@@ -250,6 +250,7 @@ Public Class DistributionForm
 
 
     Private Function GetInfoFile() As String
+        InfoStatusLabel.Text = "Looking for info worksheet..."
         Dim fso = CreateObject("Scripting.FileSystemObject")
         Dim f = fso.GetFolder(DistroPathTextBox.Text)
         Dim subFldrs = f.SubFolders
@@ -308,20 +309,23 @@ Public Class DistributionForm
 
 
     Private Sub FindFilesAndCreateProgramSelectWindow()
+        Dim dirPathComponents = Split(Me.DistroPathTextBox.Text, "\")
+
         'check for info worksheet in XRL folder
         Dim infoFile = GetInfoFile()
         If infoFile <> "" Then
+            InfoStatusLabel.Text = "Reading info worksheet..."
             locationInfo = New LocationData(infoFile)
             Me.CustomerJobNumComboBox.Text = locationInfo.GetCustomerNumber()
             Me.InternalJobNumComboBox.Text = locationInfo.GetInternalNumber()
             Me.LocationNameTextBox.Text = locationInfo.GetLocationName()
+            If dirPathComponents.Length > 1 Then
+                locationInfo.SetCustomer(UCase(dirPathComponents(1)))
+                Me.CustomerComboBox.Text = locationInfo.GetCustomer()
+            End If
         End If
 
-        Dim dirPathComponents = Split(Me.DistroPathTextBox.Text, "\")
-        If dirPathComponents.Length > 1 Then
-            CustomerComboBox.Text = UCase(dirPathComponents(1))
-        End If
-
+        InfoStatusLabel.Text = "Looking for software to distribute..."
         Dim j = 0
         Dim filesys = CreateObject("Scripting.FileSystemObject")
         If filesys.FolderExists(Me.DistroPathTextBox.Text) Then
@@ -651,11 +655,10 @@ Public Class DistributionForm
         SaveMenuItem.Enabled = True
         SaveAsMenuItem.Enabled = True
 
-        If Me.CustomerComboBox.Text.Equals("") Or Me.InternalJobNumComboBox.Text.Equals("") Or Me.LocationNameTextBox.Text.Equals("") Then
+        If Me.CustomerComboBox.Text.Trim.Equals("") Or Me.InternalJobNumComboBox.Text.Trim.Equals("") Or Me.LocationNameTextBox.Text.Trim.Equals("") Then
             InfoStatusLabel.Text = "Fill customer, internal job number, and location name fields to insert info to database."
         Else
-            AddToDatabaseToolBttn.Enabled = True
-            AddToDatabaseMenuItem.Enabled = True
+            EnableCreationControls()
         End If
     End Sub
 
@@ -676,32 +679,44 @@ Public Class DistributionForm
         AddToDatabaseToolBttn.Enabled = False
         AddToDatabaseMenuItem.Enabled = False
 
+        CreateLabelsToolBttn.Enabled = False
+
+        DistEmailToolBttn.Enabled = False
+
+        CreateLetterToolBttn.Enabled = False
+
     End Sub
 
 
     Private Sub CustomerComboBox_TextChanged(sender As Object, e As EventArgs) Handles CustomerComboBox.TextChanged
-        If Not (Me.CustomerComboBox.Text.Equals("") Or Me.InternalJobNumComboBox.Text.Equals("") Or Me.LocationNameTextBox.Text.Equals("")) And DistributionDataLoaded Then
-            AddToDatabaseToolBttn.Enabled = True
-            AddToDatabaseMenuItem.Enabled = True
+        If Not (Me.CustomerComboBox.Text.Trim.Equals("") Or Me.InternalJobNumComboBox.Text.Trim.Equals("") Or Me.LocationNameTextBox.Text.Trim.Equals("")) And DistributionDataLoaded Then
+            EnableCreationControls()
             InfoStatusLabel.Text = ""
+        Else
+            DisableCreationControls()
+            InfoStatusLabel.Text = "Fill customer, internal job number, and location name fields to insert info to database."
         End If
     End Sub
 
 
     Private Sub InternalJobNumComboBox_TextChanged(sender As Object, e As EventArgs) Handles InternalJobNumComboBox.TextChanged
-        If Not (Me.CustomerComboBox.Text.Equals("") Or Me.InternalJobNumComboBox.Text.Equals("") Or Me.LocationNameTextBox.Text.Equals("")) And DistributionDataLoaded Then
-            AddToDatabaseToolBttn.Enabled = True
-            AddToDatabaseMenuItem.Enabled = True
+        If Not (Me.CustomerComboBox.Text.Trim.Equals("") Or Me.InternalJobNumComboBox.Text.Trim.Equals("") Or Me.LocationNameTextBox.Text.Trim.Equals("")) And DistributionDataLoaded Then
+            EnableCreationControls()
             InfoStatusLabel.Text = ""
+        Else
+            DisableCreationControls()
+            InfoStatusLabel.Text = "Fill customer, internal job number, and location name fields to insert info to database."
         End If
     End Sub
 
 
     Private Sub LocationNameTextBox_TextChanged(sender As Object, e As EventArgs) Handles LocationNameTextBox.TextChanged
-        If Not (Me.CustomerComboBox.Text.Equals("") Or Me.InternalJobNumComboBox.Text.Equals("") Or Me.LocationNameTextBox.Text.Equals("")) And DistributionDataLoaded Then
-            AddToDatabaseToolBttn.Enabled = True
-            AddToDatabaseMenuItem.Enabled = True
+        If Not (Me.CustomerComboBox.Text.Trim.Equals("") Or Me.InternalJobNumComboBox.Text.Trim.Equals("") Or Me.LocationNameTextBox.Text.Trim.Equals("")) And DistributionDataLoaded Then
+            EnableCreationControls()
             InfoStatusLabel.Text = ""
+        Else
+            DisableCreationControls()
+            InfoStatusLabel.Text = "Fill customer, internal job number, and location name fields to insert info to database."
         End If
     End Sub
 
@@ -716,6 +731,40 @@ Public Class DistributionForm
 
     Private Sub PrintPreviewMenuItem_Click(sender As Object, e As EventArgs) Handles PrintPreviewMenuItem.Click
         PrintPreview.ShowDialog()
+    End Sub
+
+
+    Private Sub CreateLabelsToolBttn_Click(sender As Object, e As EventArgs) Handles CreateLabelsToolBttn.Click
+        Dim doc As XDocument = XDocument.Load("Blank.label")
+        Dim root = doc.Root()
+        Dim programInfoNode = root.Element("String")
+
+    End Sub
+
+
+    Private Sub EnableCreationControls()
+        AddToDatabaseToolBttn.Enabled = True
+        AddToDatabaseMenuItem.Enabled = True
+
+        CreateLabelsToolBttn.Enabled = True
+
+        DistEmailToolBttn.Enabled = True
+
+        CreateLetterToolBttn.Enabled = True
+
+    End Sub
+
+
+    Private Sub DisableCreationControls()
+        AddToDatabaseToolBttn.Enabled = False
+        AddToDatabaseMenuItem.Enabled = False
+
+        CreateLabelsToolBttn.Enabled = False
+
+        DistEmailToolBttn.Enabled = False
+
+        CreateLetterToolBttn.Enabled = False
+
     End Sub
 
 End Class

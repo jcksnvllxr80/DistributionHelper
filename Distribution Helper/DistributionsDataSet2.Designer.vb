@@ -2637,7 +2637,7 @@ Namespace DistributionsDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(2) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT ID, locationName, programName, date, address, checksum_h14, CRC_h14, check"& _ 
@@ -2645,22 +2645,6 @@ Namespace DistributionsDataSetTableAdapters
                 "onsCRC, consSum, v_crc, v_sum, nv_crc, nv_sum, v_valcrc, nv_valcrc, revision, cu"& _ 
                 "stomer, customerJobNum, internalJobNum FROM dbo.Distributions"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT DISTINCT "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ID, locationName, programName, date, a"& _ 
-                "ddress, checksum_h14, CRC_h14, checksum_h15, CRC_h15, checksum_h30, CRC_h30, che"& _ 
-                "cksum_h31, CRC_h31, equipmentType, consCRC, consSum, v_crc, v_sum, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
-                "              nv_crc, nv_sum, v_valcrc, nv_valcrc, revision, customer, customerJ"& _ 
-                "obNum, internalJobNum"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Distributions"
-            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
-            Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT DISTINCT "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         ID, locationName, programName, date, a"& _ 
-                "ddress, checksum_h14, CRC_h14, checksum_h15, CRC_h15, checksum_h30, CRC_h30, che"& _ 
-                "cksum_h31, CRC_h31, equipmentType, consCRC, consSum, v_crc, v_sum, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
-                "              nv_crc, nv_sum, v_valcrc, nv_valcrc, revision, customer, customerJ"& _ 
-                "obNum, internalJobNum"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Distributions"
-            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2685,32 +2669,6 @@ Namespace DistributionsDataSetTableAdapters
             Dim dataTable As DistributionsDataSet.DistributionsDataTable = New DistributionsDataSet.DistributionsDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillBy(ByVal dataTable As DistributionsDataSet.DistributionsDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(1)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillBy1(ByVal dataTable As DistributionsDataSet.DistributionsDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(2)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _

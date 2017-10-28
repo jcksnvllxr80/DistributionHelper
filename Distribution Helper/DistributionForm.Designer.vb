@@ -47,8 +47,6 @@ Partial Class DistributionForm
         Me.RecipAddyTextBox = New System.Windows.Forms.TextBox()
         Me.SoftwareLocLabel = New System.Windows.Forms.Label()
         Me.DistroPathTextBox = New System.Windows.Forms.TextBox()
-        Me.DistributionsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DistributionsDataSet = New Distribution_Helper.DistributionsDataSet()
         Me.StatusStrip = New System.Windows.Forms.StatusStrip()
         Me.InfoStatusLabel = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ProgressBar = New System.Windows.Forms.ToolStripProgressBar()
@@ -69,19 +67,22 @@ Partial Class DistributionForm
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.PrintToolBttn = New System.Windows.Forms.ToolStripButton()
         Me.PrintPrevToolBttn = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.DistEmailToolBttn = New System.Windows.Forms.ToolStripButton()
+        Me.CreateLabelsToolBttn = New System.Windows.Forms.ToolStripButton()
+        Me.CreateLetterToolBttn = New System.Windows.Forms.ToolStripButton()
         Me.PrintWindow = New System.Windows.Forms.PrintDialog()
         Me.DistributionDocument = New System.Drawing.Printing.PrintDocument()
         Me.PrintPreview = New System.Windows.Forms.PrintPreviewDialog()
+        Me.DistributionsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DistributionsDataSet = New Distribution_Helper.DistributionsDataSet()
         Me.DistributionsTableAdapter = New Distribution_Helper.DistributionsDataSetTableAdapters.DistributionsTableAdapter()
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.InputPanel.SuspendLayout()
-        CType(Me.DistributionsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DistributionsDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip.SuspendLayout()
         Me.Toolbar.SuspendLayout()
+        CType(Me.DistributionsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DistributionsDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'InputPanel
@@ -359,16 +360,6 @@ Partial Class DistributionForm
         Me.DistroPathTextBox.Size = New System.Drawing.Size(694, 23)
         Me.DistroPathTextBox.TabIndex = 1
         '
-        'DistributionsBindingSource
-        '
-        Me.DistributionsBindingSource.DataMember = "Distributions"
-        Me.DistributionsBindingSource.DataSource = Me.DistributionsDataSet
-        '
-        'DistributionsDataSet
-        '
-        Me.DistributionsDataSet.DataSetName = "DistributionsDataSet"
-        Me.DistributionsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'StatusStrip
         '
         Me.StatusStrip.BackColor = System.Drawing.Color.Gray
@@ -491,7 +482,7 @@ Partial Class DistributionForm
         '
         Me.Toolbar.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(9, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Toolbar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.Toolbar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BrowseToolbarBttn, Me.SaveToolBttn, Me.AddToDatabaseToolBttn, Me.ToolStripSeparator1, Me.PrintToolBttn, Me.PrintPrevToolBttn, Me.ToolStripSeparator3, Me.ToolStripButton1, Me.ToolStripButton2})
+        Me.Toolbar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BrowseToolbarBttn, Me.SaveToolBttn, Me.AddToDatabaseToolBttn, Me.ToolStripSeparator1, Me.PrintToolBttn, Me.PrintPrevToolBttn, Me.ToolStripSeparator3, Me.DistEmailToolBttn, Me.CreateLabelsToolBttn, Me.CreateLetterToolBttn})
         Me.Toolbar.Location = New System.Drawing.Point(0, 24)
         Me.Toolbar.Name = "Toolbar"
         Me.Toolbar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
@@ -554,6 +545,44 @@ Partial Class DistributionForm
         Me.PrintPrevToolBttn.Text = "ToolStripButton1"
         Me.PrintPrevToolBttn.ToolTipText = "Print Preview"
         '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
+        '
+        'DistEmailToolBttn
+        '
+        Me.DistEmailToolBttn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.DistEmailToolBttn.Enabled = False
+        Me.DistEmailToolBttn.Image = CType(resources.GetObject("DistEmailToolBttn.Image"), System.Drawing.Image)
+        Me.DistEmailToolBttn.ImageTransparentColor = System.Drawing.Color.Transparent
+        Me.DistEmailToolBttn.Name = "DistEmailToolBttn"
+        Me.DistEmailToolBttn.Size = New System.Drawing.Size(23, 22)
+        Me.DistEmailToolBttn.Text = "ToolStripButton1"
+        Me.DistEmailToolBttn.ToolTipText = "Create Distribution Email"
+        '
+        'CreateLabelsToolBttn
+        '
+        Me.CreateLabelsToolBttn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.CreateLabelsToolBttn.Enabled = False
+        Me.CreateLabelsToolBttn.Image = CType(resources.GetObject("CreateLabelsToolBttn.Image"), System.Drawing.Image)
+        Me.CreateLabelsToolBttn.ImageTransparentColor = System.Drawing.Color.Transparent
+        Me.CreateLabelsToolBttn.Name = "CreateLabelsToolBttn"
+        Me.CreateLabelsToolBttn.Size = New System.Drawing.Size(23, 22)
+        Me.CreateLabelsToolBttn.Text = "ToolStripButton2"
+        Me.CreateLabelsToolBttn.ToolTipText = "Create Labels"
+        '
+        'CreateLetterToolBttn
+        '
+        Me.CreateLetterToolBttn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.CreateLetterToolBttn.Enabled = False
+        Me.CreateLetterToolBttn.Image = CType(resources.GetObject("CreateLetterToolBttn.Image"), System.Drawing.Image)
+        Me.CreateLetterToolBttn.ImageTransparentColor = System.Drawing.Color.Transparent
+        Me.CreateLetterToolBttn.Name = "CreateLetterToolBttn"
+        Me.CreateLetterToolBttn.Size = New System.Drawing.Size(23, 22)
+        Me.CreateLetterToolBttn.Text = "ToolStripButton1"
+        Me.CreateLetterToolBttn.ToolTipText = "Create Distribution Letter"
+        '
         'PrintWindow
         '
         Me.PrintWindow.Document = Me.DistributionDocument
@@ -573,32 +602,19 @@ Partial Class DistributionForm
         Me.PrintPreview.Name = "PrintPreview"
         Me.PrintPreview.Visible = False
         '
+        'DistributionsBindingSource
+        '
+        Me.DistributionsBindingSource.DataMember = "Distributions"
+        Me.DistributionsBindingSource.DataSource = Me.DistributionsDataSet
+        '
+        'DistributionsDataSet
+        '
+        Me.DistributionsDataSet.DataSetName = "DistributionsDataSet"
+        Me.DistributionsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'DistributionsTableAdapter
         '
         Me.DistributionsTableAdapter.ClearBeforeFill = True
-        '
-        'ToolStripButton1
-        '
-        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
-        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton1.Name = "ToolStripButton1"
-        Me.ToolStripButton1.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton1.Text = "ToolStripButton1"
-        '
-        'ToolStripButton2
-        '
-        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
-        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton2.Name = "ToolStripButton2"
-        Me.ToolStripButton2.Size = New System.Drawing.Size(23, 22)
-        Me.ToolStripButton2.Text = "ToolStripButton2"
-        '
-        'ToolStripSeparator3
-        '
-        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
         '
         'DistributionForm
         '
@@ -622,14 +638,14 @@ Partial Class DistributionForm
         Me.Text = "Distribuion Helper"
         Me.InputPanel.ResumeLayout(False)
         Me.InputPanel.PerformLayout()
-        CType(Me.DistributionsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DistributionsDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip.ResumeLayout(False)
         Me.StatusStrip.PerformLayout()
         Me.MenuStrip.ResumeLayout(False)
         Me.MenuStrip.PerformLayout()
         Me.Toolbar.ResumeLayout(False)
         Me.Toolbar.PerformLayout()
+        CType(Me.DistributionsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DistributionsDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -685,6 +701,7 @@ Partial Class DistributionForm
     Friend WithEvents CustomerJobNumComboBox As ComboBox
     Friend WithEvents CustomerJobNumberLabel As Label
     Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
-    Friend WithEvents ToolStripButton1 As ToolStripButton
-    Friend WithEvents ToolStripButton2 As ToolStripButton
+    Friend WithEvents DistEmailToolBttn As ToolStripButton
+    Friend WithEvents CreateLabelsToolBttn As ToolStripButton
+    Friend WithEvents CreateLetterToolBttn As ToolStripButton
 End Class

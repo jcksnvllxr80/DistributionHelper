@@ -237,30 +237,7 @@ SELECT ID, locationName, programName, date, address, checksum_h14, CRC_h14, chec
               <Mapping SourceColumn="customerJobNum" DataSetColumn="customerJobNum" />
               <Mapping SourceColumn="internalJobNum" DataSetColumn="internalJobNum" />
             </Mappings>
-            <Sources>
-              <DbSource ConnectionRef="DistributionsConnectionString (MySettings)" DbObjectName="Distributions.dbo.Distributions" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT DISTINCT 
-                         ID, locationName, programName, date, address, checksum_h14, CRC_h14, checksum_h15, CRC_h15, checksum_h30, CRC_h30, checksum_h31, CRC_h31, equipmentType, consCRC, consSum, v_crc, v_sum, 
-                         nv_crc, nv_sum, v_valcrc, nv_valcrc, revision, customer, customerJobNum, internalJobNum
-FROM            Distributions</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-              <DbSource ConnectionRef="DistributionsConnectionString (MySettings)" DbObjectName="Distributions.dbo.Distributions" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBy1" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBy1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillBy1">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT DISTINCT 
-                         ID, locationName, programName, date, address, checksum_h14, CRC_h14, checksum_h15, CRC_h15, checksum_h30, CRC_h30, checksum_h31, CRC_h31, equipmentType, consCRC, consSum, v_crc, v_sum, 
-                         nv_crc, nv_sum, v_valcrc, nv_valcrc, revision, customer, customerJobNum, internalJobNum
-FROM            Distributions</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </Sources>
+            <Sources />
           </TableAdapter>
         </Tables>
         <Sources />
@@ -270,7 +247,7 @@ FROM            Distributions</CommandText>
   <xs:element name="DistributionsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DistributionsDataSet" msprop:Generator_UserDSName="DistributionsDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DistributionAddress" msprop:Generator_TableClassName="DistributionAddressDataTable" msprop:Generator_TableVarName="tableDistributionAddress" msprop:Generator_TablePropName="DistributionAddress" msprop:Generator_RowDeletingName="DistributionAddressRowDeleting" msprop:Generator_RowChangingName="DistributionAddressRowChanging" msprop:Generator_RowEvHandlerName="DistributionAddressRowChangeEventHandler" msprop:Generator_RowDeletedName="DistributionAddressRowDeleted" msprop:Generator_UserTableName="DistributionAddress" msprop:Generator_RowChangedName="DistributionAddressRowChanged" msprop:Generator_RowEvArgName="DistributionAddressRowChangeEvent" msprop:Generator_RowClassName="DistributionAddressRow">
+        <xs:element name="DistributionAddress" msprop:Generator_TableClassName="DistributionAddressDataTable" msprop:Generator_TableVarName="tableDistributionAddress" msprop:Generator_RowChangedName="DistributionAddressRowChanged" msprop:Generator_TablePropName="DistributionAddress" msprop:Generator_RowDeletingName="DistributionAddressRowDeleting" msprop:Generator_RowChangingName="DistributionAddressRowChanging" msprop:Generator_RowEvHandlerName="DistributionAddressRowChangeEventHandler" msprop:Generator_RowDeletedName="DistributionAddressRowDeleted" msprop:Generator_RowClassName="DistributionAddressRow" msprop:Generator_UserTableName="DistributionAddress" msprop:Generator_RowEvArgName="DistributionAddressRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="distributionAddress" msprop:Generator_ColumnVarNameInTable="columndistributionAddress" msprop:Generator_ColumnPropNameInRow="distributionAddress" msprop:Generator_ColumnPropNameInTable="distributionAddressColumn" msprop:Generator_UserColumnName="distributionAddress" minOccurs="0">
@@ -291,7 +268,7 @@ FROM            Distributions</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Distributions" msprop:Generator_TableClassName="DistributionsDataTable" msprop:Generator_TableVarName="tableDistributions" msprop:Generator_TablePropName="Distributions" msprop:Generator_RowDeletingName="DistributionsRowDeleting" msprop:Generator_RowChangingName="DistributionsRowChanging" msprop:Generator_RowEvHandlerName="DistributionsRowChangeEventHandler" msprop:Generator_RowDeletedName="DistributionsRowDeleted" msprop:Generator_UserTableName="Distributions" msprop:Generator_RowChangedName="DistributionsRowChanged" msprop:Generator_RowEvArgName="DistributionsRowChangeEvent" msprop:Generator_RowClassName="DistributionsRow">
+        <xs:element name="Distributions" msprop:Generator_TableClassName="DistributionsDataTable" msprop:Generator_TableVarName="tableDistributions" msprop:Generator_RowChangedName="DistributionsRowChanged" msprop:Generator_TablePropName="Distributions" msprop:Generator_RowDeletingName="DistributionsRowDeleting" msprop:Generator_RowChangingName="DistributionsRowChanging" msprop:Generator_RowEvHandlerName="DistributionsRowChangeEventHandler" msprop:Generator_RowDeletedName="DistributionsRowDeleted" msprop:Generator_RowClassName="DistributionsRow" msprop:Generator_UserTableName="Distributions" msprop:Generator_RowEvArgName="DistributionsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />

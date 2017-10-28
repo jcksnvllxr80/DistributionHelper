@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="DistributionsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1037, 17</value>
-  </metadata>
-  <metadata name="DistributionsDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>874, 17</value>
-  </metadata>
   <metadata name="StatusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
@@ -180,7 +174,7 @@
         irsrwDhTO1GMvQDUEDZ5O7fHlgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="ToolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="DistEmailToolBttn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACmSURBVDhPrYyxDcIwEEUzEUO4d5WWKZgkA7BCkpqGDVAY
@@ -189,7 +183,7 @@
         /ycDKf4f2IIGtuPGF4gntcecX9NWAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="ToolStripButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="CreateLabelsToolBttn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGGSURBVFhHtZPBTcQwEEVTEUWkBa4ctwKKyJkCkKiAFmiH
@@ -200,6 +194,14 @@
         PAoBXf6EkmsukkMaoukzhFK50PVQrqoNUCN333laNQG6y1WlAZCLbnIVjbkAVi4k8MSiSq6iOReAHosX
         olquYoAAHvRYAesmuYohTwz0pCKh9e6nlit72B7e3Vqq5SrvoAgCeCEOyUvLijz+Va7ypHBcPgy/JTVM
         MzgME5AAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="CreateLetterToolBttn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABMSURBVDhPY6Aa+Pbt239iMFQ5JgBJOjk54cRtbW34DYEZ
+        8OH9RwxMlCHEGIBsCFQbAhBrAAiTbAAyHjVgSBhADMZpACkYqo1SwMAAAE+CHIITUzz9AAAAAElFTkSu
+        QmCC
 </value>
   </data>
   <metadata name="PrintWindow.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -384,6 +386,12 @@
         wf+0BQAAgAUAAIAFAACAAQAAgAHB/4ABAACAAQAAgAEAALwBAAC8AQAAvAHB/4ABbP///5H/
 </value>
   </data>
+  <metadata name="DistributionsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1037, 17</value>
+  </metadata>
+  <metadata name="DistributionsDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>874, 17</value>
+  </metadata>
   <metadata name="DistributionsTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1237, 17</value>
   </metadata>

@@ -1,4 +1,5 @@
 ﻿Public Class LocationData
+    Private Customer As String
     Private LocationName As String
     Private MilePost As String
     Private InternalNumber As String
@@ -19,15 +20,25 @@
     End Sub
 
     Public Overrides Function ToString() As String
-        Return Me.CustomerNumber & vbCrLf & Me.InternalNumber & vbCrLf & Me.LocationName &
-            If(TypeOf (Me.City) Is String, " / " & Me.City & ", ", ", ") & Me.State & " / " & Me.MilePost & vbCrLf & Me.Division &
-            " DIVISION / " & Me.Subdivision & " SUBDIVISION" & " (" & Me.SubdivAbrev & ")" &
-            vbCrLf & vbCrLf
+        Return "Customer: " & Me.Customer & vbCrLf & Me.CustomerNumber & vbCrLf & Me.InternalNumber &
+            vbCrLf & Me.LocationName & If(TypeOf (Me.City) Is String, " / " & Me.City & ", ", ", ") &
+            Me.State & " / " & Me.MilePost & vbCrLf & Me.Division & " DIVISION / " & Me.Subdivision &
+            " SUBDIVISION" & " (" & Me.SubdivAbrev & ")" & vbCrLf & vbCrLf
     End Function
 
 
     Public Function GetLocationName() As String
         Return Me.LocationName
+    End Function
+
+
+    Public Function SetCustomer(customer As String)
+        Me.Customer = customer
+    End Function
+
+
+    Public Function GetCustomer() As String
+        Return Me.Customer
     End Function
 
 
