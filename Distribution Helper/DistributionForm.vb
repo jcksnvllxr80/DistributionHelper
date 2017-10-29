@@ -220,6 +220,9 @@ Public Class DistributionForm
 
 
     Private Sub DistributionForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'future use of datagridview
+        BindGrid()
+
         'read from database and fill in combo boxes
         LoadCustomerComboBox()
         LoadCustomerJobNumComboBox()
@@ -230,6 +233,12 @@ Public Class DistributionForm
         ShipMethodComboBox.Items.Add("Express (1-2 Days)")
         ShipMethodComboBox.Items.Add("Overnight")
         ShipMethodComboBox.SelectedItem = "Standard (3-5 Days)"
+    End Sub
+
+
+    Private Sub BindGrid()
+        DataGridView1.DataSource = DistributionsBindingSource
+
     End Sub
 
 
@@ -767,4 +776,7 @@ Public Class DistributionForm
 
     End Sub
 
+    Private Sub StatusStrip_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles StatusStrip.ItemClicked
+
+    End Sub
 End Class
