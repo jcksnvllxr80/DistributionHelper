@@ -3,7 +3,7 @@
 Public Class DistributionForm
     Dim tempInfoString
     Dim INITIAL_ARRAY_SIZE = 8
-    Dim DistributionPrograms(INITIAL_ARRAY_SIZE) As ProgramFile
+    Dim DistributionPrograms(INITIAL_ARRAY_SIZE)
     Dim DistributionDataLoaded As Boolean = False
     Dim locationInfo As LocationData
 
@@ -319,20 +319,21 @@ Public Class DistributionForm
 
     Private Sub FindFilesAndCreateProgramSelectWindow()
         Dim dirPathComponents = Split(Me.DistroPathTextBox.Text, "\")
+        If dirPathComponents.Length > 1 Then
+            Me.CustomerComboBox.Text = UCase(dirPathComponents(1))
+        End If
 
         'check for info worksheet in XRL folder
         Dim infoFile = GetInfoFile()
+
         If infoFile <> "" Then
             InfoStatusLabel.Text = "Reading info worksheet..."
             locationInfo = New LocationData(infoFile)
             Me.CustomerJobNumComboBox.Text = locationInfo.GetCustomerNumber()
             Me.InternalJobNumComboBox.Text = locationInfo.GetInternalNumber()
             Me.LocationNameTextBox.Text = locationInfo.GetLocationName()
-            If dirPathComponents.Length > 1 Then
-                locationInfo.SetCustomer(UCase(dirPathComponents(1)))
-                Me.CustomerComboBox.Text = locationInfo.GetCustomer()
+            locationInfo.SetCustomer(Me.CustomerComboBox.Text)
             End If
-        End If
 
         InfoStatusLabel.Text = "Looking for software to distribute..."
         Dim j = 0
@@ -659,6 +660,7 @@ Public Class DistributionForm
 
         PrintPrevToolBttn.Enabled = True
         PrintPreviewMenuItem.Enabled = True
+        PrintPreviewTabWindow.Document = Me.DistributionDocument
 
         SaveToolBttn.Enabled = True
         SaveMenuItem.Enabled = True
@@ -745,9 +747,20 @@ Public Class DistributionForm
 
     Private Sub CreateLabelsToolBttn_Click(sender As Object, e As EventArgs) Handles CreateLabelsToolBttn.Click
         Dim doc As XDocument = XDocument.Load("Blank.label")
-        Dim root = doc.Root()
-        Dim programInfoNode = root.Element("String")
-
+        Dim labelnode = doc.Descendants("String")
+        For Each prog In DistributionPrograms
+            If Not prog Is Nothing Then
+                If prog.GetEquipType() = "EC4" Then
+                    labelnode(0).Value = prog.MAPLabelStr
+                    labelnode(1).Value = prog.MAPLabelStr
+                    doc.Save("C:\MT\Testttttt\" & prog.GetName & ".label")
+                ElseIf {"VHLC", "NVHLC"}.Contains(prog.GetEquipType()) Then
+                    labelnode(0).Value = prog.evenLabelStr
+                    labelnode(1).Value = prog.oddLabelStr
+                    doc.Save("C:\MT\Testttttt\" & prog.GetName & ".label")
+                End If
+            End If
+        Next
     End Sub
 
 
@@ -776,7 +789,4 @@ Public Class DistributionForm
 
     End Sub
 
-    Private Sub StatusStrip_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles StatusStrip.ItemClicked
-
-    End Sub
 End Class

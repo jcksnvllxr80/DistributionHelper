@@ -4,10 +4,12 @@
     Private MAP_sum As String
     Private MNE_crc As String
     Private MNE_sum As String
+    Public MapLabelStr As String
 
     Public Sub New(filename As String)
         MyBase.New(filename, "EC4")
         ReadChecksumLog()
+        Me.MapLabelStr = Me.GetName & vbCrLf & "MAP" & vbCrLf & "CS " & Me.GetMAPChecksum & "  CRC " & Me.GetMAPCRC
     End Sub
 
 

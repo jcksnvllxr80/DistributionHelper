@@ -6,6 +6,9 @@
         MyBase.New(filename, "VHLC", compiler)
         'MsgBox("Creating V Obj")
         Me.ReadVitalLog()
+
+        Me.evenLabelStr = Me.GetName & vbCrLf & "H14" & vbCrLf & "CS " & Me.GetEvenChecksum & "  CRC " & Me.GetEvenCRC
+        Me.oddLabelStr = Me.GetName & vbCrLf & "H15" & vbCrLf & "CS " & Me.GetOddChecksum & "  CRC " & Me.GetOddCRC
     End Sub
 
 

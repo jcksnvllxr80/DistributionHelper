@@ -7,6 +7,8 @@
     Public isVital As Boolean
     Public isCompiledInALC As Boolean
     Private validationCRC As String
+    Public evenLabelStr As String
+    Public oddLabelStr As String
 
     Public Sub New(filename As String, equip As String, compiler As String)
         MyBase.New(filename, equip)
@@ -22,6 +24,7 @@
         Else
             Me.isCompiledInALC = False
         End If
+
     End Sub
 
 

@@ -79,20 +79,21 @@ Partial Class DistributionForm
         Me.DistributionsTableAdapter = New Distribution_Helper.DistributionsDataSetTableAdapters.DistributionsTableAdapter()
         Me.TabPages = New System.Windows.Forms.TabControl()
         Me.DistributionTab = New System.Windows.Forms.TabPage()
+        Me.PrintPreviewTab = New System.Windows.Forms.TabPage()
+        Me.PrintPreviewTabWindow = New System.Windows.Forms.PrintPreviewControl()
         Me.DatabaseTab = New System.Windows.Forms.TabPage()
-        Me.DistributionsBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.BindingNavigator1 = New System.Windows.Forms.BindingNavigator(Me.components)
+        Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMovePreviousItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.BindingNavigatorPositionItem = New System.Windows.Forms.ToolStripTextBox()
-        Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
         Me.BindingNavigatorSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.BindingNavigatorAddNewItem = New System.Windows.Forms.ToolStripButton()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.DistributionsBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.InputPanel.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip.SuspendLayout()
@@ -101,15 +102,18 @@ Partial Class DistributionForm
         CType(Me.DistributionsDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPages.SuspendLayout()
         Me.DistributionTab.SuspendLayout()
+        Me.PrintPreviewTab.SuspendLayout()
         Me.DatabaseTab.SuspendLayout()
-        CType(Me.DistributionsBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BindingNavigator1.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DistributionsBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'InputPanel
         '
+        Me.InputPanel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.InputPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.InputPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.InputPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -608,6 +612,7 @@ Partial Class DistributionForm
         '
         'PrintWindow
         '
+        Me.PrintWindow.AllowCurrentPage = True
         Me.PrintWindow.Document = Me.DistributionDocument
         Me.PrintWindow.UseEXDialog = True
         '
@@ -641,16 +646,22 @@ Partial Class DistributionForm
         '
         'TabPages
         '
+        Me.TabPages.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabPages.Controls.Add(Me.DistributionTab)
+        Me.TabPages.Controls.Add(Me.PrintPreviewTab)
         Me.TabPages.Controls.Add(Me.DatabaseTab)
         Me.TabPages.Location = New System.Drawing.Point(0, 47)
         Me.TabPages.Name = "TabPages"
         Me.TabPages.SelectedIndex = 0
         Me.TabPages.Size = New System.Drawing.Size(731, 482)
+        Me.TabPages.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight
         Me.TabPages.TabIndex = 4
         '
         'DistributionTab
         '
+        Me.DistributionTab.AutoScroll = True
         Me.DistributionTab.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.DistributionTab.Controls.Add(Me.InputPanel)
         Me.DistributionTab.Location = New System.Drawing.Point(4, 22)
@@ -658,10 +669,34 @@ Partial Class DistributionForm
         Me.DistributionTab.Padding = New System.Windows.Forms.Padding(3)
         Me.DistributionTab.Size = New System.Drawing.Size(723, 456)
         Me.DistributionTab.TabIndex = 0
-        Me.DistributionTab.Text = "DistributionTab"
+        Me.DistributionTab.Text = "Distribution Tab"
+        '
+        'PrintPreviewTab
+        '
+        Me.PrintPreviewTab.AutoScroll = True
+        Me.PrintPreviewTab.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.PrintPreviewTab.Controls.Add(Me.PrintPreviewTabWindow)
+        Me.PrintPreviewTab.Location = New System.Drawing.Point(4, 22)
+        Me.PrintPreviewTab.Name = "PrintPreviewTab"
+        Me.PrintPreviewTab.Padding = New System.Windows.Forms.Padding(3)
+        Me.PrintPreviewTab.Size = New System.Drawing.Size(723, 456)
+        Me.PrintPreviewTab.TabIndex = 2
+        Me.PrintPreviewTab.Text = "Print Preview"
+        '
+        'PrintPreviewTabWindow
+        '
+        Me.PrintPreviewTabWindow.AutoZoom = False
+        Me.PrintPreviewTabWindow.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PrintPreviewTabWindow.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.PrintPreviewTabWindow.Location = New System.Drawing.Point(3, 3)
+        Me.PrintPreviewTabWindow.Name = "PrintPreviewTabWindow"
+        Me.PrintPreviewTabWindow.Size = New System.Drawing.Size(717, 450)
+        Me.PrintPreviewTabWindow.TabIndex = 0
+        Me.PrintPreviewTabWindow.Zoom = 0.8R
         '
         'DatabaseTab
         '
+        Me.DatabaseTab.AutoScroll = True
         Me.DatabaseTab.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.DatabaseTab.Controls.Add(Me.BindingNavigator1)
         Me.DatabaseTab.Controls.Add(Me.DataGridView1)
@@ -670,29 +705,18 @@ Partial Class DistributionForm
         Me.DatabaseTab.Padding = New System.Windows.Forms.Padding(3)
         Me.DatabaseTab.Size = New System.Drawing.Size(723, 456)
         Me.DatabaseTab.TabIndex = 1
-        Me.DatabaseTab.Text = "DatabaseTab"
-        '
-        'DistributionsBindingSource1
-        '
-        Me.DistributionsBindingSource1.DataMember = "Distributions"
-        Me.DistributionsBindingSource1.DataSource = Me.DistributionsDataSet
-        '
-        'DataGridView1
-        '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(55, 32)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(598, 296)
-        Me.DataGridView1.TabIndex = 0
+        Me.DatabaseTab.Text = "Database Tab"
         '
         'BindingNavigator1
         '
-        Me.BindingNavigator1.AddNewItem = Me.BindingNavigatorAddNewItem
+        Me.BindingNavigator1.AddNewItem = Nothing
+        Me.BindingNavigator1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BindingNavigator1.BindingSource = Me.DistributionsBindingSource
         Me.BindingNavigator1.CountItem = Me.BindingNavigatorCountItem
         Me.BindingNavigator1.DeleteItem = Nothing
-        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem})
+        Me.BindingNavigator1.Dock = System.Windows.Forms.DockStyle.None
+        Me.BindingNavigator1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2})
         Me.BindingNavigator1.Location = New System.Drawing.Point(3, 3)
         Me.BindingNavigator1.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.BindingNavigator1.MoveLastItem = Me.BindingNavigatorMoveLastItem
@@ -701,9 +725,16 @@ Partial Class DistributionForm
         Me.BindingNavigator1.Name = "BindingNavigator1"
         Me.BindingNavigator1.PositionItem = Me.BindingNavigatorPositionItem
         Me.BindingNavigator1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
-        Me.BindingNavigator1.Size = New System.Drawing.Size(717, 25)
+        Me.BindingNavigator1.Size = New System.Drawing.Size(209, 25)
         Me.BindingNavigator1.TabIndex = 1
         Me.BindingNavigator1.Text = "BindingNavigator1"
+        '
+        'BindingNavigatorCountItem
+        '
+        Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
+        Me.BindingNavigatorCountItem.Text = "of {0}"
+        Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
         '
         'BindingNavigatorMoveFirstItem
         '
@@ -737,16 +768,9 @@ Partial Class DistributionForm
         Me.BindingNavigatorPositionItem.Text = "0"
         Me.BindingNavigatorPositionItem.ToolTipText = "Current position"
         '
-        'BindingNavigatorCountItem
-        '
-        Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(35, 22)
-        Me.BindingNavigatorCountItem.Text = "of {0}"
-        Me.BindingNavigatorCountItem.ToolTipText = "Total number of items"
-        '
         'BindingNavigatorSeparator1
         '
-        Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator"
+        Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
         Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 25)
         '
         'BindingNavigatorMoveNextItem
@@ -769,17 +793,26 @@ Partial Class DistributionForm
         '
         'BindingNavigatorSeparator2
         '
-        Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator"
+        Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
         Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
         '
-        'BindingNavigatorAddNewItem
+        'DataGridView1
         '
-        Me.BindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorAddNewItem.Image = CType(resources.GetObject("BindingNavigatorAddNewItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
-        Me.BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorAddNewItem.Text = "Add new"
+        Me.DataGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Enabled = False
+        Me.DataGridView1.Location = New System.Drawing.Point(-1, 30)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
+        Me.DataGridView1.Size = New System.Drawing.Size(728, 429)
+        Me.DataGridView1.TabIndex = 0
+        '
+        'DistributionsBindingSource1
+        '
+        Me.DistributionsBindingSource1.DataMember = "Distributions"
+        Me.DistributionsBindingSource1.DataSource = Me.DistributionsDataSet
         '
         'DistributionForm
         '
@@ -813,13 +846,14 @@ Partial Class DistributionForm
         CType(Me.DistributionsDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPages.ResumeLayout(False)
         Me.DistributionTab.ResumeLayout(False)
+        Me.PrintPreviewTab.ResumeLayout(False)
         Me.DatabaseTab.ResumeLayout(False)
         Me.DatabaseTab.PerformLayout()
-        CType(Me.DistributionsBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BindingNavigator1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BindingNavigator1.ResumeLayout(False)
         Me.BindingNavigator1.PerformLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DistributionsBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -884,7 +918,6 @@ Partial Class DistributionForm
     Friend WithEvents DistributionsBindingSource1 As BindingSource
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents BindingNavigator1 As BindingNavigator
-    Friend WithEvents BindingNavigatorAddNewItem As ToolStripButton
     Friend WithEvents BindingNavigatorCountItem As ToolStripLabel
     Friend WithEvents BindingNavigatorMoveFirstItem As ToolStripButton
     Friend WithEvents BindingNavigatorMovePreviousItem As ToolStripButton
@@ -894,4 +927,6 @@ Partial Class DistributionForm
     Friend WithEvents BindingNavigatorMoveNextItem As ToolStripButton
     Friend WithEvents BindingNavigatorMoveLastItem As ToolStripButton
     Friend WithEvents BindingNavigatorSeparator2 As ToolStripSeparator
+    Friend WithEvents PrintPreviewTab As TabPage
+    Friend WithEvents PrintPreviewTabWindow As PrintPreviewControl
 End Class
