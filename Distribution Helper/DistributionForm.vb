@@ -221,8 +221,6 @@ Public Class DistributionForm
 
 
     Private Sub DistributionForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'future use of datagridview
-        BindGrid()
 
         'read from database and fill in combo boxes
         LoadCustomerComboBox()
@@ -237,8 +235,18 @@ Public Class DistributionForm
     End Sub
 
 
-    Private Sub BindGrid()
-        DataGridView1.DataSource = DistributionsBindingSource
+    Private Sub BindGrid(progName As String)
+        'DataGridView1.DataSource = DistributionsBindingSource
+
+        progName = Trim(progName)
+        If progName = "" Then Exit Sub
+
+        'Dim tblCustomBooks As New DataTable
+        'Dim conn = DistributionsTableAdapter.Connection
+        'Dim adpBooks = DistributionsTableAdapter
+        'adpBooks.Fill(DistributionsTableAdapter.GetData)
+
+        DistributionsDataGrid.DataSource = DistinctLocationTableAdapter.GetData
 
     End Sub
 
@@ -261,23 +269,26 @@ Public Class DistributionForm
 
     Private Function GetInfoFile() As String
         InfoStatusLabel.Text = "Looking for info worksheet..."
+        Dim searchStr = "XRL"
         Dim fso = CreateObject("Scripting.FileSystemObject")
         Dim f = fso.GetFolder(DistroPathTextBox.Text)
         Dim subFldrs = f.SubFolders
         For Each subF In subFldrs
-            If (UCase(subF.name.Substring(0, 3)) = "XRL") Then
-                Dim infoPathStr = fso.GetAbsolutePathName(subF)
-                xrlFolder = infoPathStr
-                Dim folder = fso.GetFolder(infoPathStr)
-                For Each f In folder.Files
-                    If f.Name.Length > 19 Then
-                        If (f.Name.Substring(f.Name.Length - 19) = "info worksheet.xlsm") Then
-                            Return infoPathStr & "\" & f.Name
-                            fso = Nothing
-                            Exit Function
+            If subF.name.Length >= searchStr.Length Then
+                If (UCase(subF.name.Substring(0, 3)) = searchStr) Then
+                    Dim infoPathStr = fso.GetAbsolutePathName(subF)
+                    xrlFolder = infoPathStr
+                    Dim folder = fso.GetFolder(infoPathStr)
+                    For Each f In folder.Files
+                        If f.Name.Length > 19 Then
+                            If (f.Name.Substring(f.Name.Length - 19) = "info worksheet.xlsm") Then
+                                Return infoPathStr & "\" & f.Name
+                                fso = Nothing
+                                Exit Function
+                            End If
                         End If
-                    End If
-                Next
+                    Next
+                End If
             End If
         Next
         Return ""
@@ -815,6 +826,8 @@ Public Class DistributionForm
 
 
     Private Sub EnableCreationControls()
+        BindGrid(Me.LocationNameTextBox.Text)
+
         AddToDatabaseToolBttn.Enabled = True
         AddToDatabaseMenuItem.Enabled = True
 

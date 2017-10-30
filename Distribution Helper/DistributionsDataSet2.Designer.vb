@@ -601,15 +601,13 @@ Partial Public Class DistributionsDataSet
     Partial Public Class DistributionsDataTable
         Inherits Global.System.Data.TypedTableBase(Of DistributionsRow)
         
-        Private columnID As Global.System.Data.DataColumn
+        Private columnprogramName As Global.System.Data.DataColumn
         
         Private columnlocationName As Global.System.Data.DataColumn
         
-        Private columnprogramName As Global.System.Data.DataColumn
+        Private columnrevision As Global.System.Data.DataColumn
         
         Private columndate As Global.System.Data.DataColumn
-        
-        Private columnaddress As Global.System.Data.DataColumn
         
         Private columnchecksum_h14 As Global.System.Data.DataColumn
         
@@ -644,8 +642,6 @@ Partial Public Class DistributionsDataSet
         Private columnv_valcrc As Global.System.Data.DataColumn
         
         Private columnnv_valcrc As Global.System.Data.DataColumn
-        
-        Private columnrevision As Global.System.Data.DataColumn
         
         Private columncustomer As Global.System.Data.DataColumn
         
@@ -690,9 +686,9 @@ Partial Public Class DistributionsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property IDColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property programNameColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnID
+                Return Me.columnprogramName
             End Get
         End Property
         
@@ -706,9 +702,9 @@ Partial Public Class DistributionsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property programNameColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property revisionColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnprogramName
+                Return Me.columnrevision
             End Get
         End Property
         
@@ -717,14 +713,6 @@ Partial Public Class DistributionsDataSet
         Public ReadOnly Property dateColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columndate
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property addressColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnaddress
             End Get
         End Property
         
@@ -866,14 +854,6 @@ Partial Public Class DistributionsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property revisionColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnrevision
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property customerColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columncustomer
@@ -934,11 +914,10 @@ Partial Public Class DistributionsDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Overloads Function AddDistributionsRow( _
-                    ByVal ID As Integer,  _
-                    ByVal locationName As String,  _
                     ByVal programName As String,  _
+                    ByVal locationName As String,  _
+                    ByVal revision As Integer,  _
                     ByVal _date As Date,  _
-                    ByVal address As String,  _
                     ByVal checksum_h14 As String,  _
                     ByVal CRC_h14 As String,  _
                     ByVal checksum_h15 As String,  _
@@ -956,21 +935,14 @@ Partial Public Class DistributionsDataSet
                     ByVal nv_sum As String,  _
                     ByVal v_valcrc As String,  _
                     ByVal nv_valcrc As String,  _
-                    ByVal revision As Integer,  _
                     ByVal customer As String,  _
                     ByVal customerJobNum As String,  _
                     ByVal internalJobNum As String) As DistributionsRow
             Dim rowDistributionsRow As DistributionsRow = CType(Me.NewRow,DistributionsRow)
-            Dim columnValuesArray() As Object = New Object() {ID, locationName, programName, _date, address, checksum_h14, CRC_h14, checksum_h15, CRC_h15, checksum_h30, CRC_h30, checksum_h31, CRC_h31, equipmentType, consCRC, consSum, v_crc, v_sum, nv_crc, nv_sum, v_valcrc, nv_valcrc, revision, customer, customerJobNum, internalJobNum}
+            Dim columnValuesArray() As Object = New Object() {programName, locationName, revision, _date, checksum_h14, CRC_h14, checksum_h15, CRC_h15, checksum_h30, CRC_h30, checksum_h31, CRC_h31, equipmentType, consCRC, consSum, v_crc, v_sum, nv_crc, nv_sum, v_valcrc, nv_valcrc, customer, customerJobNum, internalJobNum}
             rowDistributionsRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowDistributionsRow)
             Return rowDistributionsRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function FindByID(ByVal ID As Integer) As DistributionsRow
-            Return CType(Me.Rows.Find(New Object() {ID}),DistributionsRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -990,11 +962,10 @@ Partial Public Class DistributionsDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columnID = MyBase.Columns("ID")
-            Me.columnlocationName = MyBase.Columns("locationName")
             Me.columnprogramName = MyBase.Columns("programName")
+            Me.columnlocationName = MyBase.Columns("locationName")
+            Me.columnrevision = MyBase.Columns("revision")
             Me.columndate = MyBase.Columns("date")
-            Me.columnaddress = MyBase.Columns("address")
             Me.columnchecksum_h14 = MyBase.Columns("checksum_h14")
             Me.columnCRC_h14 = MyBase.Columns("CRC_h14")
             Me.columnchecksum_h15 = MyBase.Columns("checksum_h15")
@@ -1012,7 +983,6 @@ Partial Public Class DistributionsDataSet
             Me.columnnv_sum = MyBase.Columns("nv_sum")
             Me.columnv_valcrc = MyBase.Columns("v_valcrc")
             Me.columnnv_valcrc = MyBase.Columns("nv_valcrc")
-            Me.columnrevision = MyBase.Columns("revision")
             Me.columncustomer = MyBase.Columns("customer")
             Me.columncustomerJobNum = MyBase.Columns("customerJobNum")
             Me.columninternalJobNum = MyBase.Columns("internalJobNum")
@@ -1021,19 +991,17 @@ Partial Public Class DistributionsDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnID)
-            Me.columnlocationName = New Global.System.Data.DataColumn("locationName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnlocationName)
             Me.columnprogramName = New Global.System.Data.DataColumn("programName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnprogramName)
+            Me.columnlocationName = New Global.System.Data.DataColumn("locationName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnlocationName)
+            Me.columnrevision = New Global.System.Data.DataColumn("revision", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnrevision)
             Me.columndate = New Global.System.Data.DataColumn("date", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             Me.columndate.ExtendedProperties.Add("Generator_ColumnPropNameInTable", "dateColumn")
             Me.columndate.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "columndate")
             Me.columndate.ExtendedProperties.Add("Generator_UserColumnName", "date")
             MyBase.Columns.Add(Me.columndate)
-            Me.columnaddress = New Global.System.Data.DataColumn("address", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnaddress)
             Me.columnchecksum_h14 = New Global.System.Data.DataColumn("checksum_h14", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnchecksum_h14)
             Me.columnCRC_h14 = New Global.System.Data.DataColumn("CRC_h14", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -1068,23 +1036,16 @@ Partial Public Class DistributionsDataSet
             MyBase.Columns.Add(Me.columnv_valcrc)
             Me.columnnv_valcrc = New Global.System.Data.DataColumn("nv_valcrc", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnnv_valcrc)
-            Me.columnrevision = New Global.System.Data.DataColumn("revision", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnrevision)
             Me.columncustomer = New Global.System.Data.DataColumn("customer", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columncustomer)
             Me.columncustomerJobNum = New Global.System.Data.DataColumn("customerJobNum", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columncustomerJobNum)
             Me.columninternalJobNum = New Global.System.Data.DataColumn("internalJobNum", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columninternalJobNum)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
-            Me.columnID.AllowDBNull = false
-            Me.columnID.Unique = true
-            Me.columnlocationName.AllowDBNull = false
-            Me.columnlocationName.MaxLength = 50
             Me.columnprogramName.AllowDBNull = false
-            Me.columnprogramName.MaxLength = 50
+            Me.columnlocationName.AllowDBNull = false
+            Me.columnrevision.AllowDBNull = false
             Me.columndate.AllowDBNull = false
-            Me.columnaddress.MaxLength = 50
             Me.columnchecksum_h14.MaxLength = 4
             Me.columnCRC_h14.MaxLength = 4
             Me.columnchecksum_h15.MaxLength = 4
@@ -1103,7 +1064,6 @@ Partial Public Class DistributionsDataSet
             Me.columnnv_sum.MaxLength = 4
             Me.columnv_valcrc.MaxLength = 8
             Me.columnnv_valcrc.MaxLength = 8
-            Me.columnrevision.AllowDBNull = false
             Me.columncustomer.AllowDBNull = false
             Me.columncustomer.MaxLength = 50
             Me.columncustomerJobNum.MaxLength = 50
@@ -1353,12 +1313,12 @@ Partial Public Class DistributionsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ID() As Integer
+        Public Property programName() As String
             Get
-                Return CType(Me(Me.tableDistributions.IDColumn),Integer)
+                Return CType(Me(Me.tableDistributions.programNameColumn),String)
             End Get
             Set
-                Me(Me.tableDistributions.IDColumn) = value
+                Me(Me.tableDistributions.programNameColumn) = value
             End Set
         End Property
         
@@ -1375,12 +1335,12 @@ Partial Public Class DistributionsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property programName() As String
+        Public Property revision() As Integer
             Get
-                Return CType(Me(Me.tableDistributions.programNameColumn),String)
+                Return CType(Me(Me.tableDistributions.revisionColumn),Integer)
             End Get
             Set
-                Me(Me.tableDistributions.programNameColumn) = value
+                Me(Me.tableDistributions.revisionColumn) = value
             End Set
         End Property
         
@@ -1392,21 +1352,6 @@ Partial Public Class DistributionsDataSet
             End Get
             Set
                 Me(Me.tableDistributions.dateColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property address() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableDistributions.addressColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'address' in table 'Distributions' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableDistributions.addressColumn) = value
             End Set
         End Property
         
@@ -1663,17 +1608,6 @@ Partial Public Class DistributionsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property revision() As Integer
-            Get
-                Return CType(Me(Me.tableDistributions.revisionColumn),Integer)
-            End Get
-            Set
-                Me(Me.tableDistributions.revisionColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property customer() As String
             Get
                 Return CType(Me(Me.tableDistributions.customerColumn),String)
@@ -1708,18 +1642,6 @@ Partial Public Class DistributionsDataSet
                 Me(Me.tableDistributions.internalJobNumColumn) = value
             End Set
         End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsaddressNull() As Boolean
-            Return Me.IsNull(Me.tableDistributions.addressColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetaddressNull()
-            Me(Me.tableDistributions.addressColumn) = Global.System.Convert.DBNull
-        End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -2374,11 +2296,8 @@ Namespace DistributionsDataSetTableAdapters
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
             tableMapping.DataSetTable = "Distributions"
-            tableMapping.ColumnMappings.Add("ID", "ID")
-            tableMapping.ColumnMappings.Add("locationName", "locationName")
-            tableMapping.ColumnMappings.Add("programName", "programName")
+            tableMapping.ColumnMappings.Add("revision", "revision")
             tableMapping.ColumnMappings.Add("date", "date")
-            tableMapping.ColumnMappings.Add("address", "address")
             tableMapping.ColumnMappings.Add("checksum_h14", "checksum_h14")
             tableMapping.ColumnMappings.Add("CRC_h14", "CRC_h14")
             tableMapping.ColumnMappings.Add("checksum_h15", "checksum_h15")
@@ -2396,235 +2315,12 @@ Namespace DistributionsDataSetTableAdapters
             tableMapping.ColumnMappings.Add("nv_sum", "nv_sum")
             tableMapping.ColumnMappings.Add("v_valcrc", "v_valcrc")
             tableMapping.ColumnMappings.Add("nv_valcrc", "nv_valcrc")
-            tableMapping.ColumnMappings.Add("revision", "revision")
             tableMapping.ColumnMappings.Add("customer", "customer")
             tableMapping.ColumnMappings.Add("customerJobNum", "customerJobNum")
             tableMapping.ColumnMappings.Add("internalJobNum", "internalJobNum")
+            tableMapping.ColumnMappings.Add("programName", "programName")
+            tableMapping.ColumnMappings.Add("locationName", "locationName")
             Me._adapter.TableMappings.Add(tableMapping)
-            Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
-            Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Distributions] WHERE (([ID] = @Original_ID) AND ([locationName"& _ 
-                "] = @Original_locationName) AND ([programName] = @Original_programName) AND ([da"& _ 
-                "te] = @Original_date) AND ((@IsNull_address = 1 AND [address] IS NULL) OR ([addr"& _ 
-                "ess] = @Original_address)) AND ((@IsNull_checksum_h14 = 1 AND [checksum_h14] IS "& _ 
-                "NULL) OR ([checksum_h14] = @Original_checksum_h14)) AND ((@IsNull_CRC_h14 = 1 AN"& _ 
-                "D [CRC_h14] IS NULL) OR ([CRC_h14] = @Original_CRC_h14)) AND ((@IsNull_checksum_"& _ 
-                "h15 = 1 AND [checksum_h15] IS NULL) OR ([checksum_h15] = @Original_checksum_h15)"& _ 
-                ") AND ((@IsNull_CRC_h15 = 1 AND [CRC_h15] IS NULL) OR ([CRC_h15] = @Original_CRC"& _ 
-                "_h15)) AND ((@IsNull_checksum_h30 = 1 AND [checksum_h30] IS NULL) OR ([checksum_"& _ 
-                "h30] = @Original_checksum_h30)) AND ((@IsNull_CRC_h30 = 1 AND [CRC_h30] IS NULL)"& _ 
-                " OR ([CRC_h30] = @Original_CRC_h30)) AND ((@IsNull_checksum_h31 = 1 AND [checksu"& _ 
-                "m_h31] IS NULL) OR ([checksum_h31] = @Original_checksum_h31)) AND ((@IsNull_CRC_"& _ 
-                "h31 = 1 AND [CRC_h31] IS NULL) OR ([CRC_h31] = @Original_CRC_h31)) AND ([equipme"& _ 
-                "ntType] = @Original_equipmentType) AND ((@IsNull_consCRC = 1 AND [consCRC] IS NU"& _ 
-                "LL) OR ([consCRC] = @Original_consCRC)) AND ((@IsNull_consSum = 1 AND [consSum] "& _ 
-                "IS NULL) OR ([consSum] = @Original_consSum)) AND ((@IsNull_v_crc = 1 AND [v_crc]"& _ 
-                " IS NULL) OR ([v_crc] = @Original_v_crc)) AND ((@IsNull_v_sum = 1 AND [v_sum] IS"& _ 
-                " NULL) OR ([v_sum] = @Original_v_sum)) AND ((@IsNull_nv_crc = 1 AND [nv_crc] IS "& _ 
-                "NULL) OR ([nv_crc] = @Original_nv_crc)) AND ((@IsNull_nv_sum = 1 AND [nv_sum] IS"& _ 
-                " NULL) OR ([nv_sum] = @Original_nv_sum)) AND ((@IsNull_v_valcrc = 1 AND [v_valcr"& _ 
-                "c] IS NULL) OR ([v_valcrc] = @Original_v_valcrc)) AND ((@IsNull_nv_valcrc = 1 AN"& _ 
-                "D [nv_valcrc] IS NULL) OR ([nv_valcrc] = @Original_nv_valcrc)) AND ([revision] ="& _ 
-                " @Original_revision) AND ([customer] = @Original_customer) AND ((@IsNull_custome"& _ 
-                "rJobNum = 1 AND [customerJobNum] IS NULL) OR ([customerJobNum] = @Original_custo"& _ 
-                "merJobNum)) AND ([internalJobNum] = @Original_internalJobNum))"
-            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_locationName", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "locationName", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_programName", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "programName", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_date", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "date", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_address", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "address", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_address", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "address", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_checksum_h14", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h14", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_checksum_h14", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h14", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CRC_h14", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h14", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CRC_h14", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h14", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_checksum_h15", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h15", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_checksum_h15", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h15", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CRC_h15", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h15", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CRC_h15", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h15", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_checksum_h30", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h30", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_checksum_h30", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h30", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CRC_h30", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h30", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CRC_h30", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h30", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_checksum_h31", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h31", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_checksum_h31", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h31", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CRC_h31", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h31", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CRC_h31", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h31", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_equipmentType", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "equipmentType", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_consCRC", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "consCRC", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_consCRC", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "consCRC", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_consSum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "consSum", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_consSum", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "consSum", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_v_crc", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "v_crc", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_v_crc", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "v_crc", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_v_sum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "v_sum", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_v_sum", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "v_sum", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_nv_crc", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nv_crc", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_nv_crc", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nv_crc", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_nv_sum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nv_sum", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_nv_sum", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nv_sum", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_v_valcrc", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "v_valcrc", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_v_valcrc", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "v_valcrc", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_nv_valcrc", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nv_valcrc", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_nv_valcrc", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nv_valcrc", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_revision", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "revision", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_customer", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "customer", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_customerJobNum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "customerJobNum", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_customerJobNum", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "customerJobNum", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_internalJobNum", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "internalJobNum", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
-            Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Distributions] ([ID], [locationName], [programName], [date], ["& _ 
-                "address], [checksum_h14], [CRC_h14], [checksum_h15], [CRC_h15], [checksum_h30], "& _ 
-                "[CRC_h30], [checksum_h31], [CRC_h31], [equipmentType], [consCRC], [consSum], [v_"& _ 
-                "crc], [v_sum], [nv_crc], [nv_sum], [v_valcrc], [nv_valcrc], [revision], [custome"& _ 
-                "r], [customerJobNum], [internalJobNum]) VALUES (@ID, @locationName, @programName"& _ 
-                ", @date, @address, @checksum_h14, @CRC_h14, @checksum_h15, @CRC_h15, @checksum_h"& _ 
-                "30, @CRC_h30, @checksum_h31, @CRC_h31, @equipmentType, @consCRC, @consSum, @v_cr"& _ 
-                "c, @v_sum, @nv_crc, @nv_sum, @v_valcrc, @nv_valcrc, @revision, @customer, @custo"& _ 
-                "merJobNum, @internalJobNum);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT ID, locationName, programName, date, addres"& _ 
-                "s, checksum_h14, CRC_h14, checksum_h15, CRC_h15, checksum_h30, CRC_h30, checksum"& _ 
-                "_h31, CRC_h31, equipmentType, consCRC, consSum, v_crc, v_sum, nv_crc, nv_sum, v_"& _ 
-                "valcrc, nv_valcrc, revision, customer, customerJobNum, internalJobNum FROM Distr"& _ 
-                "ibutions WHERE (ID = @ID)"
-            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@locationName", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "locationName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@programName", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "programName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@date", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "date", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@address", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "address", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@checksum_h14", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h14", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CRC_h14", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h14", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@checksum_h15", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h15", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CRC_h15", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h15", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@checksum_h30", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h30", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CRC_h30", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h30", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@checksum_h31", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h31", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CRC_h31", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h31", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@equipmentType", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "equipmentType", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@consCRC", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "consCRC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@consSum", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "consSum", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@v_crc", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "v_crc", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@v_sum", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "v_sum", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@nv_crc", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nv_crc", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@nv_sum", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nv_sum", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@v_valcrc", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "v_valcrc", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@nv_valcrc", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nv_valcrc", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@revision", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "revision", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@customer", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "customer", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@customerJobNum", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "customerJobNum", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@internalJobNum", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "internalJobNum", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
-            Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Distributions] SET [ID] = @ID, [locationName] = @locationName, [pro"& _ 
-                "gramName] = @programName, [date] = @date, [address] = @address, [checksum_h14] ="& _ 
-                " @checksum_h14, [CRC_h14] = @CRC_h14, [checksum_h15] = @checksum_h15, [CRC_h15] "& _ 
-                "= @CRC_h15, [checksum_h30] = @checksum_h30, [CRC_h30] = @CRC_h30, [checksum_h31]"& _ 
-                " = @checksum_h31, [CRC_h31] = @CRC_h31, [equipmentType] = @equipmentType, [consC"& _ 
-                "RC] = @consCRC, [consSum] = @consSum, [v_crc] = @v_crc, [v_sum] = @v_sum, [nv_cr"& _ 
-                "c] = @nv_crc, [nv_sum] = @nv_sum, [v_valcrc] = @v_valcrc, [nv_valcrc] = @nv_valc"& _ 
-                "rc, [revision] = @revision, [customer] = @customer, [customerJobNum] = @customer"& _ 
-                "JobNum, [internalJobNum] = @internalJobNum WHERE (([ID] = @Original_ID) AND ([lo"& _ 
-                "cationName] = @Original_locationName) AND ([programName] = @Original_programName"& _ 
-                ") AND ([date] = @Original_date) AND ((@IsNull_address = 1 AND [address] IS NULL)"& _ 
-                " OR ([address] = @Original_address)) AND ((@IsNull_checksum_h14 = 1 AND [checksu"& _ 
-                "m_h14] IS NULL) OR ([checksum_h14] = @Original_checksum_h14)) AND ((@IsNull_CRC_"& _ 
-                "h14 = 1 AND [CRC_h14] IS NULL) OR ([CRC_h14] = @Original_CRC_h14)) AND ((@IsNull"& _ 
-                "_checksum_h15 = 1 AND [checksum_h15] IS NULL) OR ([checksum_h15] = @Original_che"& _ 
-                "cksum_h15)) AND ((@IsNull_CRC_h15 = 1 AND [CRC_h15] IS NULL) OR ([CRC_h15] = @Or"& _ 
-                "iginal_CRC_h15)) AND ((@IsNull_checksum_h30 = 1 AND [checksum_h30] IS NULL) OR ("& _ 
-                "[checksum_h30] = @Original_checksum_h30)) AND ((@IsNull_CRC_h30 = 1 AND [CRC_h30"& _ 
-                "] IS NULL) OR ([CRC_h30] = @Original_CRC_h30)) AND ((@IsNull_checksum_h31 = 1 AN"& _ 
-                "D [checksum_h31] IS NULL) OR ([checksum_h31] = @Original_checksum_h31)) AND ((@I"& _ 
-                "sNull_CRC_h31 = 1 AND [CRC_h31] IS NULL) OR ([CRC_h31] = @Original_CRC_h31)) AND"& _ 
-                " ([equipmentType] = @Original_equipmentType) AND ((@IsNull_consCRC = 1 AND [cons"& _ 
-                "CRC] IS NULL) OR ([consCRC] = @Original_consCRC)) AND ((@IsNull_consSum = 1 AND "& _ 
-                "[consSum] IS NULL) OR ([consSum] = @Original_consSum)) AND ((@IsNull_v_crc = 1 A"& _ 
-                "ND [v_crc] IS NULL) OR ([v_crc] = @Original_v_crc)) AND ((@IsNull_v_sum = 1 AND "& _ 
-                "[v_sum] IS NULL) OR ([v_sum] = @Original_v_sum)) AND ((@IsNull_nv_crc = 1 AND [n"& _ 
-                "v_crc] IS NULL) OR ([nv_crc] = @Original_nv_crc)) AND ((@IsNull_nv_sum = 1 AND ["& _ 
-                "nv_sum] IS NULL) OR ([nv_sum] = @Original_nv_sum)) AND ((@IsNull_v_valcrc = 1 AN"& _ 
-                "D [v_valcrc] IS NULL) OR ([v_valcrc] = @Original_v_valcrc)) AND ((@IsNull_nv_val"& _ 
-                "crc = 1 AND [nv_valcrc] IS NULL) OR ([nv_valcrc] = @Original_nv_valcrc)) AND ([r"& _ 
-                "evision] = @Original_revision) AND ([customer] = @Original_customer) AND ((@IsNu"& _ 
-                "ll_customerJobNum = 1 AND [customerJobNum] IS NULL) OR ([customerJobNum] = @Orig"& _ 
-                "inal_customerJobNum)) AND ([internalJobNum] = @Original_internalJobNum));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELEC"& _ 
-                "T ID, locationName, programName, date, address, checksum_h14, CRC_h14, checksum_"& _ 
-                "h15, CRC_h15, checksum_h30, CRC_h30, checksum_h31, CRC_h31, equipmentType, consC"& _ 
-                "RC, consSum, v_crc, v_sum, nv_crc, nv_sum, v_valcrc, nv_valcrc, revision, custom"& _ 
-                "er, customerJobNum, internalJobNum FROM Distributions WHERE (ID = @ID)"
-            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@locationName", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "locationName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@programName", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "programName", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@date", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "date", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@address", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "address", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@checksum_h14", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h14", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CRC_h14", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h14", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@checksum_h15", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h15", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CRC_h15", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h15", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@checksum_h30", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h30", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CRC_h30", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h30", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@checksum_h31", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h31", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CRC_h31", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h31", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@equipmentType", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "equipmentType", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@consCRC", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "consCRC", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@consSum", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "consSum", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@v_crc", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "v_crc", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@v_sum", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "v_sum", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@nv_crc", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nv_crc", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@nv_sum", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nv_sum", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@v_valcrc", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "v_valcrc", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@nv_valcrc", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nv_valcrc", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@revision", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "revision", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@customer", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "customer", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@customerJobNum", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "customerJobNum", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@internalJobNum", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "internalJobNum", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_locationName", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "locationName", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_programName", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "programName", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_date", Global.System.Data.SqlDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, 0, 0, "date", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_address", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "address", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_address", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "address", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_checksum_h14", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h14", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_checksum_h14", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h14", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CRC_h14", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h14", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CRC_h14", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h14", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_checksum_h15", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h15", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_checksum_h15", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h15", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CRC_h15", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h15", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CRC_h15", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h15", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_checksum_h30", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h30", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_checksum_h30", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h30", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CRC_h30", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h30", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CRC_h30", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h30", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_checksum_h31", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h31", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_checksum_h31", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "checksum_h31", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_CRC_h31", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h31", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CRC_h31", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CRC_h31", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_equipmentType", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "equipmentType", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_consCRC", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "consCRC", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_consCRC", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "consCRC", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_consSum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "consSum", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_consSum", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "consSum", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_v_crc", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "v_crc", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_v_crc", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "v_crc", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_v_sum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "v_sum", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_v_sum", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "v_sum", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_nv_crc", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nv_crc", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_nv_crc", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nv_crc", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_nv_sum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nv_sum", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_nv_sum", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nv_sum", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_v_valcrc", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "v_valcrc", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_v_valcrc", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "v_valcrc", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_nv_valcrc", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nv_valcrc", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_nv_valcrc", Global.System.Data.SqlDbType.NChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nv_valcrc", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_revision", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "revision", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_customer", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "customer", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_customerJobNum", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "customerJobNum", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_customerJobNum", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "customerJobNum", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_internalJobNum", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "internalJobNum", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2640,10 +2336,18 @@ Namespace DistributionsDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT ID, locationName, programName, date, address, checksum_h14, CRC_h14, check"& _ 
-                "sum_h15, CRC_h15, checksum_h30, CRC_h30, checksum_h31, CRC_h31, equipmentType, c"& _ 
-                "onsCRC, consSum, v_crc, v_sum, nv_crc, nv_sum, v_valcrc, nv_valcrc, revision, cu"& _ 
-                "stomer, customerJobNum, internalJobNum FROM dbo.Distributions"
+            Me._commandCollection(0).CommandText = "SELECT Distributions.programName, Distributions.locationName, Distributions.revis"& _ 
+                "ion, Distributions.date, Distributions.checksum_h14, Distributions.CRC_h14, Dist"& _ 
+                "ributions.checksum_h15, Distributions.CRC_h15, Distributions.checksum_h30, Distr"& _ 
+                "ibutions.CRC_h30, Distributions.checksum_h31, Distributions.CRC_h31, Distributio"& _ 
+                "ns.equipmentType, Distributions.consCRC, Distributions.consSum, Distributions.v_"& _ 
+                "crc, Distributions.v_sum, Distributions.nv_crc, Distributions.nv_sum, Distributi"& _ 
+                "ons.v_valcrc, Distributions.nv_valcrc, Distributions.customer, Distributions.cus"& _ 
+                "tomerJobNum, Distributions.internalJobNum FROM Distributions INNER JOIN (SELECT "& _ 
+                "DISTINCT programName, MAX(date) AS date, MAX(revision) AS revision FROM Distribu"& _ 
+                "tions AS Distributions_1 GROUP BY programName) AS b ON Distributions.programName"& _ 
+                " = b.programName AND Distributions.date = b.date AND Distributions.revision = b."& _ 
+                "revision"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -2670,801 +2374,6 @@ Namespace DistributionsDataSetTableAdapters
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As DistributionsDataSet.DistributionsDataTable) As Integer
-            Return Me.Adapter.Update(dataTable)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As DistributionsDataSet) As Integer
-            Return Me.Adapter.Update(dataSet, "Distributions")
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(dataRows)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete( _
-                    ByVal Original_ID As Integer,  _
-                    ByVal Original_locationName As String,  _
-                    ByVal Original_programName As String,  _
-                    ByVal Original_date As Date,  _
-                    ByVal Original_address As String,  _
-                    ByVal Original_checksum_h14 As String,  _
-                    ByVal Original_CRC_h14 As String,  _
-                    ByVal Original_checksum_h15 As String,  _
-                    ByVal Original_CRC_h15 As String,  _
-                    ByVal Original_checksum_h30 As String,  _
-                    ByVal Original_CRC_h30 As String,  _
-                    ByVal Original_checksum_h31 As String,  _
-                    ByVal Original_CRC_h31 As String,  _
-                    ByVal Original_equipmentType As String,  _
-                    ByVal Original_consCRC As String,  _
-                    ByVal Original_consSum As String,  _
-                    ByVal Original_v_crc As String,  _
-                    ByVal Original_v_sum As String,  _
-                    ByVal Original_nv_crc As String,  _
-                    ByVal Original_nv_sum As String,  _
-                    ByVal Original_v_valcrc As String,  _
-                    ByVal Original_nv_valcrc As String,  _
-                    ByVal Original_revision As Integer,  _
-                    ByVal Original_customer As String,  _
-                    ByVal Original_customerJobNum As String,  _
-                    ByVal Original_internalJobNum As String) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_ID,Integer)
-            If (Original_locationName Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_locationName")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_locationName,String)
-            End If
-            If (Original_programName Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_programName")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_programName,String)
-            End If
-            Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_date,Date)
-            If (Original_address Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(5).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_address,String)
-            End If
-            If (Original_checksum_h14 Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(7).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(Original_checksum_h14,String)
-            End If
-            If (Original_CRC_h14 Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(9).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_CRC_h14,String)
-            End If
-            If (Original_checksum_h15 Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(11).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(Original_checksum_h15,String)
-            End If
-            If (Original_CRC_h15 Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(13).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(Original_CRC_h15,String)
-            End If
-            If (Original_checksum_h30 Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(15).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(Original_checksum_h30,String)
-            End If
-            If (Original_CRC_h30 Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(17).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(Original_CRC_h30,String)
-            End If
-            If (Original_checksum_h31 Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(19).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(Original_checksum_h31,String)
-            End If
-            If (Original_CRC_h31 Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(21).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(Original_CRC_h31,String)
-            End If
-            If (Original_equipmentType Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_equipmentType")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(Original_equipmentType,String)
-            End If
-            If (Original_consCRC Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(24).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(Original_consCRC,String)
-            End If
-            If (Original_consSum Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(26).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(26).Value = CType(Original_consSum,String)
-            End If
-            If (Original_v_crc Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(27).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(28).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(27).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(28).Value = CType(Original_v_crc,String)
-            End If
-            If (Original_v_sum Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(29).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(30).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(29).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(30).Value = CType(Original_v_sum,String)
-            End If
-            If (Original_nv_crc Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(31).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(32).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(31).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(32).Value = CType(Original_nv_crc,String)
-            End If
-            If (Original_nv_sum Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(33).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(34).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(33).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(34).Value = CType(Original_nv_sum,String)
-            End If
-            If (Original_v_valcrc Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(35).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(36).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(35).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(36).Value = CType(Original_v_valcrc,String)
-            End If
-            If (Original_nv_valcrc Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(37).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(38).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(37).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(38).Value = CType(Original_nv_valcrc,String)
-            End If
-            Me.Adapter.DeleteCommand.Parameters(39).Value = CType(Original_revision,Integer)
-            If (Original_customer Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_customer")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(40).Value = CType(Original_customer,String)
-            End If
-            If (Original_customerJobNum Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(41).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(42).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.DeleteCommand.Parameters(41).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(42).Value = CType(Original_customerJobNum,String)
-            End If
-            If (Original_internalJobNum Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_internalJobNum")
-            Else
-                Me.Adapter.DeleteCommand.Parameters(43).Value = CType(Original_internalJobNum,String)
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert( _
-                    ByVal ID As Integer,  _
-                    ByVal locationName As String,  _
-                    ByVal programName As String,  _
-                    ByVal _date As Date,  _
-                    ByVal address As String,  _
-                    ByVal checksum_h14 As String,  _
-                    ByVal CRC_h14 As String,  _
-                    ByVal checksum_h15 As String,  _
-                    ByVal CRC_h15 As String,  _
-                    ByVal checksum_h30 As String,  _
-                    ByVal CRC_h30 As String,  _
-                    ByVal checksum_h31 As String,  _
-                    ByVal CRC_h31 As String,  _
-                    ByVal equipmentType As String,  _
-                    ByVal consCRC As String,  _
-                    ByVal consSum As String,  _
-                    ByVal v_crc As String,  _
-                    ByVal v_sum As String,  _
-                    ByVal nv_crc As String,  _
-                    ByVal nv_sum As String,  _
-                    ByVal v_valcrc As String,  _
-                    ByVal nv_valcrc As String,  _
-                    ByVal revision As Integer,  _
-                    ByVal customer As String,  _
-                    ByVal customerJobNum As String,  _
-                    ByVal internalJobNum As String) As Integer
-            Me.Adapter.InsertCommand.Parameters(0).Value = CType(ID,Integer)
-            If (locationName Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("locationName")
-            Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(locationName,String)
-            End If
-            If (programName Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("programName")
-            Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(programName,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(3).Value = CType(_date,Date)
-            If (address Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(address,String)
-            End If
-            If (checksum_h14 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(checksum_h14,String)
-            End If
-            If (CRC_h14 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(CRC_h14,String)
-            End If
-            If (checksum_h15 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(checksum_h15,String)
-            End If
-            If (CRC_h15 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(CRC_h15,String)
-            End If
-            If (checksum_h30 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(9).Value = CType(checksum_h30,String)
-            End If
-            If (CRC_h30 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(10).Value = CType(CRC_h30,String)
-            End If
-            If (checksum_h31 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(11).Value = CType(checksum_h31,String)
-            End If
-            If (CRC_h31 Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(12).Value = CType(CRC_h31,String)
-            End If
-            If (equipmentType Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("equipmentType")
-            Else
-                Me.Adapter.InsertCommand.Parameters(13).Value = CType(equipmentType,String)
-            End If
-            If (consCRC Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(14).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(14).Value = CType(consCRC,String)
-            End If
-            If (consSum Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(15).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(15).Value = CType(consSum,String)
-            End If
-            If (v_crc Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(16).Value = CType(v_crc,String)
-            End If
-            If (v_sum Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(17).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(17).Value = CType(v_sum,String)
-            End If
-            If (nv_crc Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(18).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(18).Value = CType(nv_crc,String)
-            End If
-            If (nv_sum Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(19).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(19).Value = CType(nv_sum,String)
-            End If
-            If (v_valcrc Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(20).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(20).Value = CType(v_valcrc,String)
-            End If
-            If (nv_valcrc Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(21).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(21).Value = CType(nv_valcrc,String)
-            End If
-            Me.Adapter.InsertCommand.Parameters(22).Value = CType(revision,Integer)
-            If (customer Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("customer")
-            Else
-                Me.Adapter.InsertCommand.Parameters(23).Value = CType(customer,String)
-            End If
-            If (customerJobNum Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(24).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.InsertCommand.Parameters(24).Value = CType(customerJobNum,String)
-            End If
-            If (internalJobNum Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("internalJobNum")
-            Else
-                Me.Adapter.InsertCommand.Parameters(25).Value = CType(internalJobNum,String)
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal ID As Integer,  _
-                    ByVal locationName As String,  _
-                    ByVal programName As String,  _
-                    ByVal _date As Date,  _
-                    ByVal address As String,  _
-                    ByVal checksum_h14 As String,  _
-                    ByVal CRC_h14 As String,  _
-                    ByVal checksum_h15 As String,  _
-                    ByVal CRC_h15 As String,  _
-                    ByVal checksum_h30 As String,  _
-                    ByVal CRC_h30 As String,  _
-                    ByVal checksum_h31 As String,  _
-                    ByVal CRC_h31 As String,  _
-                    ByVal equipmentType As String,  _
-                    ByVal consCRC As String,  _
-                    ByVal consSum As String,  _
-                    ByVal v_crc As String,  _
-                    ByVal v_sum As String,  _
-                    ByVal nv_crc As String,  _
-                    ByVal nv_sum As String,  _
-                    ByVal v_valcrc As String,  _
-                    ByVal nv_valcrc As String,  _
-                    ByVal revision As Integer,  _
-                    ByVal customer As String,  _
-                    ByVal customerJobNum As String,  _
-                    ByVal internalJobNum As String,  _
-                    ByVal Original_ID As Integer,  _
-                    ByVal Original_locationName As String,  _
-                    ByVal Original_programName As String,  _
-                    ByVal Original_date As Date,  _
-                    ByVal Original_address As String,  _
-                    ByVal Original_checksum_h14 As String,  _
-                    ByVal Original_CRC_h14 As String,  _
-                    ByVal Original_checksum_h15 As String,  _
-                    ByVal Original_CRC_h15 As String,  _
-                    ByVal Original_checksum_h30 As String,  _
-                    ByVal Original_CRC_h30 As String,  _
-                    ByVal Original_checksum_h31 As String,  _
-                    ByVal Original_CRC_h31 As String,  _
-                    ByVal Original_equipmentType As String,  _
-                    ByVal Original_consCRC As String,  _
-                    ByVal Original_consSum As String,  _
-                    ByVal Original_v_crc As String,  _
-                    ByVal Original_v_sum As String,  _
-                    ByVal Original_nv_crc As String,  _
-                    ByVal Original_nv_sum As String,  _
-                    ByVal Original_v_valcrc As String,  _
-                    ByVal Original_nv_valcrc As String,  _
-                    ByVal Original_revision As Integer,  _
-                    ByVal Original_customer As String,  _
-                    ByVal Original_customerJobNum As String,  _
-                    ByVal Original_internalJobNum As String) As Integer
-            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(ID,Integer)
-            If (locationName Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("locationName")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(locationName,String)
-            End If
-            If (programName Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("programName")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(programName,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(3).Value = CType(_date,Date)
-            If (address Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(address,String)
-            End If
-            If (checksum_h14 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(checksum_h14,String)
-            End If
-            If (CRC_h14 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(CRC_h14,String)
-            End If
-            If (checksum_h15 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(checksum_h15,String)
-            End If
-            If (CRC_h15 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(CRC_h15,String)
-            End If
-            If (checksum_h30 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(checksum_h30,String)
-            End If
-            If (CRC_h30 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(CRC_h30,String)
-            End If
-            If (checksum_h31 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(checksum_h31,String)
-            End If
-            If (CRC_h31 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(CRC_h31,String)
-            End If
-            If (equipmentType Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("equipmentType")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(equipmentType,String)
-            End If
-            If (consCRC Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(consCRC,String)
-            End If
-            If (consSum Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(15).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(consSum,String)
-            End If
-            If (v_crc Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(v_crc,String)
-            End If
-            If (v_sum Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(17).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(v_sum,String)
-            End If
-            If (nv_crc Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(nv_crc,String)
-            End If
-            If (nv_sum Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(19).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(nv_sum,String)
-            End If
-            If (v_valcrc Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(v_valcrc,String)
-            End If
-            If (nv_valcrc Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(21).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(nv_valcrc,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(22).Value = CType(revision,Integer)
-            If (customer Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("customer")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(customer,String)
-            End If
-            If (customerJobNum Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(customerJobNum,String)
-            End If
-            If (internalJobNum Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("internalJobNum")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(internalJobNum,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_ID,Integer)
-            If (Original_locationName Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_locationName")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_locationName,String)
-            End If
-            If (Original_programName Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_programName")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_programName,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(29).Value = CType(Original_date,Date)
-            If (Original_address Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(Original_address,String)
-            End If
-            If (Original_checksum_h14 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(33).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(Original_checksum_h14,String)
-            End If
-            If (Original_CRC_h14 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(35).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(Original_CRC_h14,String)
-            End If
-            If (Original_checksum_h15 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(37).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(Original_checksum_h15,String)
-            End If
-            If (Original_CRC_h15 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(39).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(Original_CRC_h15,String)
-            End If
-            If (Original_checksum_h30 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(41).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(40).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(41).Value = CType(Original_checksum_h30,String)
-            End If
-            If (Original_CRC_h30 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(43).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(42).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(43).Value = CType(Original_CRC_h30,String)
-            End If
-            If (Original_checksum_h31 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(45).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(44).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(45).Value = CType(Original_checksum_h31,String)
-            End If
-            If (Original_CRC_h31 Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(47).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(46).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(47).Value = CType(Original_CRC_h31,String)
-            End If
-            If (Original_equipmentType Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_equipmentType")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(48).Value = CType(Original_equipmentType,String)
-            End If
-            If (Original_consCRC Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(49).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(50).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(49).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(50).Value = CType(Original_consCRC,String)
-            End If
-            If (Original_consSum Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(51).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(52).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(51).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(52).Value = CType(Original_consSum,String)
-            End If
-            If (Original_v_crc Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(53).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(54).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(53).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(54).Value = CType(Original_v_crc,String)
-            End If
-            If (Original_v_sum Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(56).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(55).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(56).Value = CType(Original_v_sum,String)
-            End If
-            If (Original_nv_crc Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(57).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(58).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(57).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(58).Value = CType(Original_nv_crc,String)
-            End If
-            If (Original_nv_sum Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(59).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(60).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(59).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(60).Value = CType(Original_nv_sum,String)
-            End If
-            If (Original_v_valcrc Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(61).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(62).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(61).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(62).Value = CType(Original_v_valcrc,String)
-            End If
-            If (Original_nv_valcrc Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(63).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(64).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(63).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(64).Value = CType(Original_nv_valcrc,String)
-            End If
-            Me.Adapter.UpdateCommand.Parameters(65).Value = CType(Original_revision,Integer)
-            If (Original_customer Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_customer")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(66).Value = CType(Original_customer,String)
-            End If
-            If (Original_customerJobNum Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(67).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(68).Value = Global.System.DBNull.Value
-            Else
-                Me.Adapter.UpdateCommand.Parameters(67).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(68).Value = CType(Original_customerJobNum,String)
-            End If
-            If (Original_internalJobNum Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Original_internalJobNum")
-            Else
-                Me.Adapter.UpdateCommand.Parameters(69).Value = CType(Original_internalJobNum,String)
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal locationName As String,  _
-                    ByVal programName As String,  _
-                    ByVal _date As Date,  _
-                    ByVal address As String,  _
-                    ByVal checksum_h14 As String,  _
-                    ByVal CRC_h14 As String,  _
-                    ByVal checksum_h15 As String,  _
-                    ByVal CRC_h15 As String,  _
-                    ByVal checksum_h30 As String,  _
-                    ByVal CRC_h30 As String,  _
-                    ByVal checksum_h31 As String,  _
-                    ByVal CRC_h31 As String,  _
-                    ByVal equipmentType As String,  _
-                    ByVal consCRC As String,  _
-                    ByVal consSum As String,  _
-                    ByVal v_crc As String,  _
-                    ByVal v_sum As String,  _
-                    ByVal nv_crc As String,  _
-                    ByVal nv_sum As String,  _
-                    ByVal v_valcrc As String,  _
-                    ByVal nv_valcrc As String,  _
-                    ByVal revision As Integer,  _
-                    ByVal customer As String,  _
-                    ByVal customerJobNum As String,  _
-                    ByVal internalJobNum As String,  _
-                    ByVal Original_ID As Integer,  _
-                    ByVal Original_locationName As String,  _
-                    ByVal Original_programName As String,  _
-                    ByVal Original_date As Date,  _
-                    ByVal Original_address As String,  _
-                    ByVal Original_checksum_h14 As String,  _
-                    ByVal Original_CRC_h14 As String,  _
-                    ByVal Original_checksum_h15 As String,  _
-                    ByVal Original_CRC_h15 As String,  _
-                    ByVal Original_checksum_h30 As String,  _
-                    ByVal Original_CRC_h30 As String,  _
-                    ByVal Original_checksum_h31 As String,  _
-                    ByVal Original_CRC_h31 As String,  _
-                    ByVal Original_equipmentType As String,  _
-                    ByVal Original_consCRC As String,  _
-                    ByVal Original_consSum As String,  _
-                    ByVal Original_v_crc As String,  _
-                    ByVal Original_v_sum As String,  _
-                    ByVal Original_nv_crc As String,  _
-                    ByVal Original_nv_sum As String,  _
-                    ByVal Original_v_valcrc As String,  _
-                    ByVal Original_nv_valcrc As String,  _
-                    ByVal Original_revision As Integer,  _
-                    ByVal Original_customer As String,  _
-                    ByVal Original_customerJobNum As String,  _
-                    ByVal Original_internalJobNum As String) As Integer
-            Return Me.Update(Original_ID, locationName, programName, _date, address, checksum_h14, CRC_h14, checksum_h15, CRC_h15, checksum_h30, CRC_h30, checksum_h31, CRC_h31, equipmentType, consCRC, consSum, v_crc, v_sum, nv_crc, nv_sum, v_valcrc, nv_valcrc, revision, customer, customerJobNum, internalJobNum, Original_ID, Original_locationName, Original_programName, Original_date, Original_address, Original_checksum_h14, Original_CRC_h14, Original_checksum_h15, Original_CRC_h15, Original_checksum_h30, Original_CRC_h30, Original_checksum_h31, Original_CRC_h31, Original_equipmentType, Original_consCRC, Original_consSum, Original_v_crc, Original_v_sum, Original_nv_crc, Original_nv_sum, Original_v_valcrc, Original_nv_valcrc, Original_revision, Original_customer, Original_customerJobNum, Original_internalJobNum)
-        End Function
     End Class
     
     '''<summary>
@@ -3481,8 +2390,6 @@ Namespace DistributionsDataSetTableAdapters
         Private _updateOrder As UpdateOrderOption
         
         Private _distributionAddressTableAdapter As DistributionAddressTableAdapter
-        
-        Private _distributionsTableAdapter As DistributionsTableAdapter
         
         Private _backupDataSetBeforeUpdate As Boolean
         
@@ -3514,20 +2421,6 @@ Namespace DistributionsDataSetTableAdapters
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
-            "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property DistributionsTableAdapter() As DistributionsTableAdapter
-            Get
-                Return Me._distributionsTableAdapter
-            End Get
-            Set
-                Me._distributionsTableAdapter = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property BackupDataSetBeforeUpdate() As Boolean
             Get
@@ -3550,10 +2443,6 @@ Namespace DistributionsDataSetTableAdapters
                             AndAlso (Not (Me._distributionAddressTableAdapter.Connection) Is Nothing)) Then
                     Return Me._distributionAddressTableAdapter.Connection
                 End If
-                If ((Not (Me._distributionsTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._distributionsTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._distributionsTableAdapter.Connection
-                End If
                 Return Nothing
             End Get
             Set
@@ -3568,9 +2457,6 @@ Namespace DistributionsDataSetTableAdapters
             Get
                 Dim count As Integer = 0
                 If (Not (Me._distributionAddressTableAdapter) Is Nothing) Then
-                    count = (count + 1)
-                End If
-                If (Not (Me._distributionsTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
                 Return count
@@ -3593,15 +2479,6 @@ Namespace DistributionsDataSetTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._distributionsTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.Distributions.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._distributionsTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
             Return result
         End Function
         
@@ -3620,14 +2497,6 @@ Namespace DistributionsDataSetTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._distributionsTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.Distributions.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._distributionsTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
             Return result
         End Function
         
@@ -3638,14 +2507,6 @@ Namespace DistributionsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Function UpdateDeletedRows(ByVal dataSet As DistributionsDataSet, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._distributionsTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.Distributions.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._distributionsTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
             If (Not (Me._distributionAddressTableAdapter) Is Nothing) Then
                 Dim deletedRows() As Global.System.Data.DataRow = dataSet.DistributionAddress.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
@@ -3700,11 +2561,6 @@ Namespace DistributionsDataSetTableAdapters
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
-            If ((Not (Me._distributionsTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._distributionsTableAdapter.Connection) = false)) Then
-                Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
-                        "tring.")
-            End If
             Dim workConnection As Global.System.Data.IDbConnection = Me.Connection
             If (workConnection Is Nothing) Then
                 Throw New Global.System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana"& _ 
@@ -3744,15 +2600,6 @@ Namespace DistributionsDataSetTableAdapters
                     If Me._distributionAddressTableAdapter.Adapter.AcceptChangesDuringUpdate Then
                         Me._distributionAddressTableAdapter.Adapter.AcceptChangesDuringUpdate = false
                         adaptersWithAcceptChangesDuringUpdate.Add(Me._distributionAddressTableAdapter.Adapter)
-                    End If
-                End If
-                If (Not (Me._distributionsTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._distributionsTableAdapter, Me._distributionsTableAdapter.Connection)
-                    Me._distributionsTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
-                    Me._distributionsTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlClient.SqlTransaction)
-                    If Me._distributionsTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._distributionsTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._distributionsTableAdapter.Adapter)
                     End If
                 End If
                 '
@@ -3818,10 +2665,6 @@ Namespace DistributionsDataSetTableAdapters
                 If (Not (Me._distributionAddressTableAdapter) Is Nothing) Then
                     Me._distributionAddressTableAdapter.Connection = CType(revertConnections(Me._distributionAddressTableAdapter),Global.System.Data.SqlClient.SqlConnection)
                     Me._distributionAddressTableAdapter.Transaction = Nothing
-                End If
-                If (Not (Me._distributionsTableAdapter) Is Nothing) Then
-                    Me._distributionsTableAdapter.Connection = CType(revertConnections(Me._distributionsTableAdapter),Global.System.Data.SqlClient.SqlConnection)
-                    Me._distributionsTableAdapter.Transaction = Nothing
                 End If
                 If (0 < adaptersWithAcceptChangesDuringUpdate.Count) Then
                     Dim adapters((adaptersWithAcceptChangesDuringUpdate.Count) - 1) As Global.System.Data.Common.DataAdapter
