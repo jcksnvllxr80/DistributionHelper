@@ -6,6 +6,7 @@ Public Class DistributionForm
     Dim DistributionPrograms(INITIAL_ARRAY_SIZE)
     Dim DistributionDataLoaded As Boolean = False
     Dim locationInfo As LocationData
+    Dim xrlFolder = Nothing
 
     Private Sub SaveAsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveAsMenuItem.Click
         SaveFileDialog.ShowDialog()
@@ -266,6 +267,7 @@ Public Class DistributionForm
         For Each subF In subFldrs
             If (UCase(subF.name.Substring(0, 3)) = "XRL") Then
                 Dim infoPathStr = fso.GetAbsolutePathName(subF)
+                xrlFolder = infoPathStr
                 Dim folder = fso.GetFolder(infoPathStr)
                 For Each f In folder.Files
                     If f.Name.Length > 19 Then
@@ -288,7 +290,6 @@ Public Class DistributionForm
         Dim i = 0
         Dim fso = CreateObject("Scripting.FileSystemObject")
         Dim objWord = CreateObject("Word.Application")
-        Dim WshShell = CreateObject("WScript.Shell")
         objWord.ChangeFileOpenDirectory(currentDir)
 
         With objWord.FileDialog(msoFileDialogOpen)
@@ -333,7 +334,7 @@ Public Class DistributionForm
             Me.InternalJobNumComboBox.Text = locationInfo.GetInternalNumber()
             Me.LocationNameTextBox.Text = locationInfo.GetLocationName()
             locationInfo.SetCustomer(Me.CustomerComboBox.Text)
-            End If
+        End If
 
         InfoStatusLabel.Text = "Looking for software to distribute..."
         Dim j = 0
@@ -746,6 +747,13 @@ Public Class DistributionForm
 
 
     Private Sub CreateLabelsToolBttn_Click(sender As Object, e As EventArgs) Handles CreateLabelsToolBttn.Click
+        CreateLabels()
+    End Sub
+
+
+    Private Sub CreateLabels()
+        Dim labelPath = FindOrCreateLabelsDirectory()
+
         Dim doc As XDocument = XDocument.Load("Blank.label")
         Dim labelnode = doc.Descendants("String")
         For Each prog In DistributionPrograms
@@ -753,15 +761,57 @@ Public Class DistributionForm
                 If prog.GetEquipType() = "EC4" Then
                     labelnode(0).Value = prog.MAPLabelStr
                     labelnode(1).Value = prog.MAPLabelStr
-                    doc.Save("C:\MT\Testttttt\" & prog.GetName & ".label")
+                    doc.Save(labelPath & "\" & prog.GetName & ".label")
                 ElseIf {"VHLC", "NVHLC"}.Contains(prog.GetEquipType()) Then
                     labelnode(0).Value = prog.evenLabelStr
                     labelnode(1).Value = prog.oddLabelStr
-                    doc.Save("C:\MT\Testttttt\" & prog.GetName & ".label")
+                    doc.Save(labelPath & "\" & prog.GetName & ".label")
                 End If
             End If
         Next
     End Sub
+
+
+    Private Function FindOrCreateLabelsDirectory() As String
+        Dim fso = CreateObject("Scripting.FileSystemObject")
+        Dim distributionFldrPath As String = Nothing
+        Dim labelsFldrPath As String = Nothing
+        Dim searchStr As String
+
+        searchStr = "Distribution"
+        Dim f = fso.GetFolder(DistroPathTextBox.Text)
+        For Each subF In f.subFolders
+            If subF.Name.Length >= searchStr.Length Then
+                If (UCase(subF.name.Substring(0, 12)) = searchStr) Then
+                    distributionFldrPath = fso.GetAbsolutePathName(subF)
+                    Exit For
+                End If
+            End If
+        Next
+
+        If distributionFldrPath Is Nothing Then
+            distributionFldrPath = DistroPathTextBox.Text & "\" & searchStr
+            System.IO.Directory.CreateDirectory(distributionFldrPath)
+        End If
+
+        searchStr = "Labels"
+        f = fso.GetFolder(distributionFldrPath)
+        For Each subF In f.subFolders
+            If subF.Name.Length >= searchStr.Length Then
+                If (UCase(subF.name.Substring(0, 6)) = searchStr) Then
+                    labelsFldrPath = fso.GetAbsolutePathName(subF)
+                    Exit For
+                End If
+            End If
+        Next
+
+        If labelsFldrPath Is Nothing Then
+            labelsFldrPath = distributionFldrPath & "\" & searchStr
+            System.IO.Directory.CreateDirectory(labelsFldrPath)
+        End If
+
+        Return labelsFldrPath
+    End Function
 
 
     Private Sub EnableCreationControls()
