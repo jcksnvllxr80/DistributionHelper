@@ -46,7 +46,7 @@ Partial Class ProgramSelectorWindow
         Me.Name = "ProgramSelectorWindow"
         Me.Opacity = 0.97R
         Me.ShowIcon = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Program Selector"
         Me.TopMost = True
         Me.ResumeLayout(False)

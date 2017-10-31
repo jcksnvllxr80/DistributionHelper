@@ -59,11 +59,14 @@ Partial Class DistributionForm
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.PrintMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PrintPreviewMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ExitMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.Toolbar = New System.Windows.Forms.ToolStrip()
         Me.BrowseToolbarBttn = New System.Windows.Forms.ToolStripButton()
         Me.SaveToolBttn = New System.Windows.Forms.ToolStripButton()
         Me.AddToDatabaseToolBttn = New System.Windows.Forms.ToolStripButton()
+        Me.RefreshDBToolBttn = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.PrintToolBttn = New System.Windows.Forms.ToolStripButton()
         Me.PrintPrevToolBttn = New System.Windows.Forms.ToolStripButton()
@@ -84,7 +87,6 @@ Partial Class DistributionForm
         Me.DatabaseTab = New System.Windows.Forms.TabPage()
         Me.DistributionsDataGrid = New System.Windows.Forms.DataGridView()
         Me.DistinctLocationTableAdapter = New Distribution_Helper.DistributionsDataSetTableAdapters.DistributionsTableAdapter()
-        Me.RefreshDBToolBttn = New System.Windows.Forms.ToolStripButton()
         Me.InputPanel.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip.SuspendLayout()
@@ -415,7 +417,7 @@ Partial Class DistributionForm
         '
         Me.FileToolStripMenuItem.BackColor = System.Drawing.Color.DarkGray
         Me.FileToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenMenuItem, Me.SaveMenuItem, Me.SaveAsMenuItem, Me.AddToDatabaseMenuItem, Me.ToolStripSeparator2, Me.PrintMenuItem, Me.PrintPreviewMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenMenuItem, Me.SaveMenuItem, Me.SaveAsMenuItem, Me.AddToDatabaseMenuItem, Me.ToolStripSeparator2, Me.PrintMenuItem, Me.PrintPreviewMenuItem, Me.ToolStripSeparator4, Me.ExitMenuItem})
         Me.FileToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText
         Me.FileToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Gray
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
@@ -486,6 +488,19 @@ Partial Class DistributionForm
         Me.PrintPreviewMenuItem.Size = New System.Drawing.Size(161, 22)
         Me.PrintPreviewMenuItem.Text = "Print Preview"
         '
+        'ToolStripSeparator4
+        '
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(158, 6)
+        '
+        'ExitMenuItem
+        '
+        Me.ExitMenuItem.BackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.ExitMenuItem.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.ExitMenuItem.Name = "ExitMenuItem"
+        Me.ExitMenuItem.Size = New System.Drawing.Size(161, 22)
+        Me.ExitMenuItem.Text = "Close"
+        '
         'SaveFileDialog
         '
         Me.SaveFileDialog.CheckFileExists = True
@@ -533,6 +548,17 @@ Partial Class DistributionForm
         Me.AddToDatabaseToolBttn.Name = "AddToDatabaseToolBttn"
         Me.AddToDatabaseToolBttn.Size = New System.Drawing.Size(23, 22)
         Me.AddToDatabaseToolBttn.ToolTipText = "Add to Database"
+        '
+        'RefreshDBToolBttn
+        '
+        Me.RefreshDBToolBttn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.RefreshDBToolBttn.Enabled = False
+        Me.RefreshDBToolBttn.Image = CType(resources.GetObject("RefreshDBToolBttn.Image"), System.Drawing.Image)
+        Me.RefreshDBToolBttn.ImageTransparentColor = System.Drawing.Color.Transparent
+        Me.RefreshDBToolBttn.Name = "RefreshDBToolBttn"
+        Me.RefreshDBToolBttn.Size = New System.Drawing.Size(23, 22)
+        Me.RefreshDBToolBttn.Text = "Refresh Database Tab"
+        Me.RefreshDBToolBttn.ToolTipText = "Refresh Database"
         '
         'ToolStripSeparator1
         '
@@ -706,16 +732,6 @@ Partial Class DistributionForm
         '
         Me.DistinctLocationTableAdapter.ClearBeforeFill = True
         '
-        'RefreshDBToolBttn
-        '
-        Me.RefreshDBToolBttn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.RefreshDBToolBttn.Enabled = False
-        Me.RefreshDBToolBttn.Image = CType(resources.GetObject("RefreshDBToolBttn.Image"), System.Drawing.Image)
-        Me.RefreshDBToolBttn.ImageTransparentColor = System.Drawing.Color.Transparent
-        Me.RefreshDBToolBttn.Name = "RefreshDBToolBttn"
-        Me.RefreshDBToolBttn.Size = New System.Drawing.Size(23, 22)
-        Me.RefreshDBToolBttn.ToolTipText = "Refresh Database"
-        '
         'DistributionForm
         '
         Me.AccessibleDescription = "Creates Distribution Files"
@@ -817,4 +833,6 @@ Partial Class DistributionForm
     Friend WithEvents PrintPreviewTabWindow As PrintPreviewControl
     Friend WithEvents DistinctLocationTableAdapter As DistributionsDataSetTableAdapters.DistributionsTableAdapter
     Friend WithEvents RefreshDBToolBttn As ToolStripButton
+    Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
+    Friend WithEvents ExitMenuItem As ToolStripMenuItem
 End Class

@@ -199,6 +199,13 @@ Public Class DistributionForm
         InfoStatusLabel.Text = tempInfoString
     End Sub
 
+    Private Sub RefreshDBToolBttn_MouseHover(sender As Object, e As EventArgs) Handles RefreshDBToolBttn.MouseHover
+        InfoStatusLabel.Text = RefreshDBToolBttn.Text
+    End Sub
+
+    Private Sub RefreshDBToolBttn_MouseLeave(sender As Object, e As EventArgs) Handles RefreshDBToolBttn.MouseLeave
+        InfoStatusLabel.Text = tempInfoString
+    End Sub
 
     Private Sub DistributionDate_MouseClick(sender As Object, e As MouseEventArgs) Handles DistributionDate.MouseClick
         InfoStatusLabel.Text = tempInfoString
@@ -221,6 +228,7 @@ Public Class DistributionForm
 
 
     Private Sub DistributionForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
 
         'read from database and fill in combo boxes
         LoadCustomerComboBox()
@@ -330,22 +338,6 @@ Public Class DistributionForm
 
 
     Private Sub FindFilesAndCreateProgramSelectWindow()
-        Dim dirPathComponents = Split(Me.DistroPathTextBox.Text, "\")
-        If dirPathComponents.Length > 1 Then
-            Me.CustomerComboBox.Text = UCase(dirPathComponents(1))
-        End If
-
-        'check for info worksheet in XRL folder
-        Dim infoFile = GetInfoFile()
-
-        If infoFile <> "" Then
-            InfoStatusLabel.Text = "Reading info worksheet..."
-            locationInfo = New LocationData(infoFile)
-            Me.CustomerJobNumComboBox.Text = locationInfo.GetCustomerNumber()
-            Me.InternalJobNumComboBox.Text = locationInfo.GetInternalNumber()
-            Me.LocationNameTextBox.Text = locationInfo.GetLocationName()
-            locationInfo.SetCustomer(Me.CustomerComboBox.Text)
-        End If
 
         InfoStatusLabel.Text = "Looking for software to distribute..."
         Dim j = 0
@@ -363,6 +355,7 @@ Public Class DistributionForm
                         Dim checkBox As New CheckBox()
                         ' Add checkbox to form
                         My.Forms.ProgramSelectorWindow.ProgramsPanel.Controls.Add(checkBox)
+
                         'Set size, position, ...
                         checkBox.Text = filename
                         checkBox.Location = New Point(10, j * 20)
@@ -387,6 +380,9 @@ Public Class DistributionForm
                 CancelButton.Size = New Size(My.Forms.ProgramSelectorWindow.Width / 2 - 10, 30)
                 AddHandler CancelButton.Click, AddressOf Me.CancelButton_Click
 
+                My.Forms.ProgramSelectorWindow.Location = My.Forms.DistributionForm.Location 'New System.Drawing.Point()
+                My.Forms.ProgramSelectorWindow.Location = New Point(My.Forms.ProgramSelectorWindow.Location.X + 150,
+                                                                    My.Forms.ProgramSelectorWindow.Location.Y + 250)
                 My.Forms.ProgramSelectorWindow.Show()
             Else
                 MsgBox("There are no files to distribute in the selected folder.")
@@ -398,6 +394,23 @@ Public Class DistributionForm
 
 
     Private Sub OkButton_Click(sender As Object, e As EventArgs)
+        Dim dirPathComponents = Split(Me.DistroPathTextBox.Text, "\")
+        If dirPathComponents.Length > 1 Then
+            Me.CustomerComboBox.Text = UCase(dirPathComponents(1))
+        End If
+
+        'check for info worksheet in XRL folder
+        Dim infoFile = GetInfoFile()
+
+        If infoFile <> "" Then
+            InfoStatusLabel.Text = "Reading info worksheet..."
+            locationInfo = New LocationData(infoFile)
+            Me.CustomerJobNumComboBox.Text = locationInfo.GetCustomerNumber()
+            Me.InternalJobNumComboBox.Text = locationInfo.GetInternalNumber()
+            Me.LocationNameTextBox.Text = locationInfo.GetLocationName()
+            locationInfo.SetCustomer(Me.CustomerComboBox.Text)
+        End If
+
         Dim i = 0
         Array.Clear(DistributionPrograms, 0, DistributionPrograms.Length)
         For Each controlObj In My.Forms.ProgramSelectorWindow.ProgramsPanel.Controls
@@ -473,8 +486,8 @@ Public Class DistributionForm
 
 
     Private Sub PrintToolBttn_Click(sender As Object, e As EventArgs) Handles PrintToolBttn.Click
-
         Dim result = PrintWindow.ShowDialog()
+
         If result = DialogResult.OK Then
             DistributionDocument.Print()
         End If
@@ -500,6 +513,7 @@ Public Class DistributionForm
 
 
     Private Sub PrintPrevToolBttn_Click(sender As Object, e As EventArgs) Handles PrintPrevToolBttn.Click
+        PrintPreview.Location = New Point(My.Forms.DistributionForm.Location.X + 75, My.Forms.DistributionForm.Location.Y + 125)
         PrintPreview.ShowDialog()
     End Sub
 
@@ -754,6 +768,7 @@ Public Class DistributionForm
 
 
     Private Sub PrintPreviewMenuItem_Click(sender As Object, e As EventArgs) Handles PrintPreviewMenuItem.Click
+        PrintPreview.Location = New Point(My.Forms.DistributionForm.Location.X + 75, My.Forms.DistributionForm.Location.Y + 125)
         PrintPreview.ShowDialog()
     End Sub
 
@@ -859,4 +874,9 @@ Public Class DistributionForm
     Private Sub RefreshDBToolBttn_Click(sender As Object, e As EventArgs) Handles RefreshDBToolBttn.Click
         BindGridAndFilterByProgName(Me.LocationNameTextBox.Text)
     End Sub
+
+    Private Sub ExitMenuItem_Click(sender As Object, e As EventArgs) Handles ExitMenuItem.Click
+        Close()
+    End Sub
+
 End Class
