@@ -10,8 +10,8 @@
             Me.ReadNonVitalLog()
         End If
 
-        Me.evenLabelStr = Me.GetName & vbCrLf & "H14" & vbCrLf & "CS " & Me.GetEvenChecksum & "  CRC " & Me.GetEvenCRC
-        Me.oddLabelStr = Me.GetName & vbCrLf & "H15" & vbCrLf & "CS " & Me.GetOddChecksum & "  CRC " & Me.GetOddCRC
+        Me.evenLabelStr = Me.GetName & vbCrLf & "H30" & vbCrLf & "CS " & Me.GetEvenChecksum & "  CRC " & Me.GetEvenCRC
+        Me.oddLabelStr = Me.GetName & vbCrLf & "H31" & vbCrLf & "CS " & Me.GetOddChecksum & "  CRC " & Me.GetOddCRC
     End Sub
 
 
@@ -50,8 +50,8 @@
     Public Overrides Sub InsertDistributionToDB(con As SqlClient.SqlConnection, primaryKey As Integer, revNum As Integer)
         Dim cmd As New SqlClient.SqlCommand
 
-        cmd.CommandText = "INSERT INTO Distributions(ID, locationName, programName, date, CRC_h14, checksum_h14, CRC_h15,
-            checksum_h15, revision, customer, customerJobNum, internalJobNum, equipmentType) VALUES(" &
+        cmd.CommandText = "INSERT INTO Distributions(ID, locationName, programName, date, CRC_h30, checksum_h30, CRC_h31,
+            checksum_h31, revision, customer, customerJobNum, internalJobNum, equipmentType) VALUES(" &
             primaryKey & ", '" & My.Forms.DistributionForm.LocationNameTextBox.Text & "', '" & Me.GetName & "', 
             '" & My.Forms.DistributionForm.DistributionDate.Value & "', '" & Me.GetEvenCRC & "', 
             '" & Me.GetEvenChecksum & "', '" & Me.GetOddCRC & "', '" & Me.GetOddChecksum & "',

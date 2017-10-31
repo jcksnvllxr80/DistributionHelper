@@ -235,7 +235,7 @@ Public Class DistributionForm
     End Sub
 
 
-    Private Sub BindGrid(progName As String)
+    Private Sub BindGridAndFilterByProgName(progName As String)
         'DataGridView1.DataSource = DistributionsBindingSource
 
         progName = Trim(progName)
@@ -389,7 +389,7 @@ Public Class DistributionForm
 
                 My.Forms.ProgramSelectorWindow.Show()
             Else
-                MsgBox("There are no B1 or H14 Files to Distribute in the selected folder.")
+                MsgBox("There are no files to distribute in the selected folder.")
             End If
         Else
             Me.DistroPathTextBox.Text = "Invalid path."
@@ -542,6 +542,7 @@ Public Class DistributionForm
         LoadInternalJobNumComboBox()
         LoadCustomerComboBox()
         LoadCustomerJobNumComboBox()
+        BindGridAndFilterByProgName(Me.LocationNameTextBox.Text)
 
         Me.ProgressBar.Visible = False
     End Sub
@@ -826,10 +827,11 @@ Public Class DistributionForm
 
 
     Private Sub EnableCreationControls()
-        BindGrid(Me.LocationNameTextBox.Text)
+        BindGridAndFilterByProgName(Me.LocationNameTextBox.Text)
 
         AddToDatabaseToolBttn.Enabled = True
         AddToDatabaseMenuItem.Enabled = True
+        RefreshDBToolBttn.Enabled = True
 
         CreateLabelsToolBttn.Enabled = True
 
@@ -843,6 +845,7 @@ Public Class DistributionForm
     Private Sub DisableCreationControls()
         AddToDatabaseToolBttn.Enabled = False
         AddToDatabaseMenuItem.Enabled = False
+        RefreshDBToolBttn.Enabled = False
 
         CreateLabelsToolBttn.Enabled = False
 
@@ -852,4 +855,8 @@ Public Class DistributionForm
 
     End Sub
 
+
+    Private Sub RefreshDBToolBttn_Click(sender As Object, e As EventArgs) Handles RefreshDBToolBttn.Click
+        BindGridAndFilterByProgName(Me.LocationNameTextBox.Text)
+    End Sub
 End Class

@@ -84,6 +84,7 @@ Partial Class DistributionForm
         Me.DatabaseTab = New System.Windows.Forms.TabPage()
         Me.DistributionsDataGrid = New System.Windows.Forms.DataGridView()
         Me.DistinctLocationTableAdapter = New Distribution_Helper.DistributionsDataSetTableAdapters.DistributionsTableAdapter()
+        Me.RefreshDBToolBttn = New System.Windows.Forms.ToolStripButton()
         Me.InputPanel.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip.SuspendLayout()
@@ -496,7 +497,7 @@ Partial Class DistributionForm
         '
         Me.Toolbar.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(9, Byte), Integer), CType(CType(221, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Toolbar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.Toolbar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BrowseToolbarBttn, Me.SaveToolBttn, Me.AddToDatabaseToolBttn, Me.ToolStripSeparator1, Me.PrintToolBttn, Me.PrintPrevToolBttn, Me.ToolStripSeparator3, Me.DistEmailToolBttn, Me.CreateLabelsToolBttn, Me.CreateLetterToolBttn})
+        Me.Toolbar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BrowseToolbarBttn, Me.SaveToolBttn, Me.AddToDatabaseToolBttn, Me.RefreshDBToolBttn, Me.ToolStripSeparator1, Me.PrintToolBttn, Me.PrintPrevToolBttn, Me.ToolStripSeparator3, Me.DistEmailToolBttn, Me.CreateLabelsToolBttn, Me.CreateLetterToolBttn})
         Me.Toolbar.Location = New System.Drawing.Point(0, 24)
         Me.Toolbar.Name = "Toolbar"
         Me.Toolbar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System
@@ -556,7 +557,6 @@ Partial Class DistributionForm
         Me.PrintPrevToolBttn.ImageTransparentColor = System.Drawing.Color.Transparent
         Me.PrintPrevToolBttn.Name = "PrintPrevToolBttn"
         Me.PrintPrevToolBttn.Size = New System.Drawing.Size(23, 22)
-        Me.PrintPrevToolBttn.Text = "ToolStripButton1"
         Me.PrintPrevToolBttn.ToolTipText = "Print Preview"
         '
         'ToolStripSeparator3
@@ -572,7 +572,6 @@ Partial Class DistributionForm
         Me.DistEmailToolBttn.ImageTransparentColor = System.Drawing.Color.Transparent
         Me.DistEmailToolBttn.Name = "DistEmailToolBttn"
         Me.DistEmailToolBttn.Size = New System.Drawing.Size(23, 22)
-        Me.DistEmailToolBttn.Text = "ToolStripButton1"
         Me.DistEmailToolBttn.ToolTipText = "Create Distribution Email"
         '
         'CreateLabelsToolBttn
@@ -583,7 +582,6 @@ Partial Class DistributionForm
         Me.CreateLabelsToolBttn.ImageTransparentColor = System.Drawing.Color.Transparent
         Me.CreateLabelsToolBttn.Name = "CreateLabelsToolBttn"
         Me.CreateLabelsToolBttn.Size = New System.Drawing.Size(23, 22)
-        Me.CreateLabelsToolBttn.Text = "ToolStripButton2"
         Me.CreateLabelsToolBttn.ToolTipText = "Create Labels"
         '
         'CreateLetterToolBttn
@@ -594,7 +592,6 @@ Partial Class DistributionForm
         Me.CreateLetterToolBttn.ImageTransparentColor = System.Drawing.Color.Transparent
         Me.CreateLetterToolBttn.Name = "CreateLetterToolBttn"
         Me.CreateLetterToolBttn.Size = New System.Drawing.Size(23, 22)
-        Me.CreateLetterToolBttn.Text = "ToolStripButton1"
         Me.CreateLetterToolBttn.ToolTipText = "Create Distribution Letter"
         '
         'PrintWindow
@@ -672,6 +669,7 @@ Partial Class DistributionForm
         '
         'PrintPreviewTabWindow
         '
+        Me.PrintPreviewTabWindow.AutoZoom = False
         Me.PrintPreviewTabWindow.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PrintPreviewTabWindow.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.PrintPreviewTabWindow.Location = New System.Drawing.Point(3, 3)
@@ -707,6 +705,16 @@ Partial Class DistributionForm
         'DistinctLocationTableAdapter
         '
         Me.DistinctLocationTableAdapter.ClearBeforeFill = True
+        '
+        'RefreshDBToolBttn
+        '
+        Me.RefreshDBToolBttn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.RefreshDBToolBttn.Enabled = False
+        Me.RefreshDBToolBttn.Image = CType(resources.GetObject("RefreshDBToolBttn.Image"), System.Drawing.Image)
+        Me.RefreshDBToolBttn.ImageTransparentColor = System.Drawing.Color.Transparent
+        Me.RefreshDBToolBttn.Name = "RefreshDBToolBttn"
+        Me.RefreshDBToolBttn.Size = New System.Drawing.Size(23, 22)
+        Me.RefreshDBToolBttn.ToolTipText = "Refresh Database"
         '
         'DistributionForm
         '
@@ -808,4 +816,5 @@ Partial Class DistributionForm
     Friend WithEvents PrintPreviewTab As TabPage
     Friend WithEvents PrintPreviewTabWindow As PrintPreviewControl
     Friend WithEvents DistinctLocationTableAdapter As DistributionsDataSetTableAdapters.DistributionsTableAdapter
+    Friend WithEvents RefreshDBToolBttn As ToolStripButton
 End Class

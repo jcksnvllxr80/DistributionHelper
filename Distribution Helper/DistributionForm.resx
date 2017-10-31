@@ -156,6 +156,18 @@
         hUGAAcBy9gsQCpD/CDK4gjzcLjuYZWnNmG9bAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="RefreshDBToolBttn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFlSURBVDhPlZO9SgNREIX3DfQN9AnEJxBfwMpWwc7GQmy1
+        sLKw0ToIgiCSQrawMY1bpNFCthECNoogFgprsT/ldb5xJnt1ScQDQ25m5pw592eTaajrOhBVVW1b6n+A
+        PLd5EW5Hr4icWno6mqaZF+KRRI5AsnoSZtbPQn/4iJu8KIpZa+1CyBtvH59h9/wuLOxcKjkO8mVZPkks
+        GqUFZKxi+TfRA1Fc0Wu0b6DIZKx689rxjU6M/wu5EPKy0VpwQDR4M/uVXOZncJjmun+3jgOp7ysZoOzT
+        t3pDmlPLh8H9s4oJyQ+3YKv8Khlg36dDcJsIQGJNbvTyPj4jauQVkwSwqg0CctS8D4HxlaqaFXqDByy3
+        +zOQoxYLWEmL2crBtRY4CxxBYALBOr4leuEYvX0Drs4+mcYUgnX8PuiNt6eQxjS2OClMWG/pB8xqxkEt
+        7V11iOT8Sv/8HnjvXBkEgjW5ju0kSb4A+q/tpV+w3ngAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="PrintToolBttn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
