@@ -662,6 +662,7 @@ Partial Class DistributionForm
         Me.TabPages.Controls.Add(Me.DistributionTab)
         Me.TabPages.Controls.Add(Me.PrintPreviewTab)
         Me.TabPages.Controls.Add(Me.DatabaseTab)
+        Me.TabPages.HotTrack = True
         Me.TabPages.Location = New System.Drawing.Point(0, 47)
         Me.TabPages.Name = "TabPages"
         Me.TabPages.SelectedIndex = 0
